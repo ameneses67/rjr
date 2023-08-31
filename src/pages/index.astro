@@ -1,15 +1,13 @@
 ---
+import Header from "../components/header/Header.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+const title = "Inicio";
+const description =
+  "¡Edúcate! Te enseñamos finanzas personales para ayudarte a tomar el control de tu destino financiero y llevar el estilo de vida que simpre has deseado.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout {title} {description}>
+  <Header />
+  <h1 class="text-4xl font-bold text-indigo-500">Astro</h1>
+</MainLayout>

@@ -1,0 +1,74 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<button
+  class="flex gap-1 border-l border-l-slate-200 py-1 pl-6 dark:border-l-slate-800"
+>
+  <span
+    id="sun"
+    class="h-6 w-6 cursor-pointer text-slate-400 hover:text-slate-500 dark:text-slate-700 dark:hover:text-slate-600"
+  >
+    <Icon name="fa-solid:sun" />
+  </span>
+  <span
+    id="moon"
+    class="h-6 w-6 cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+  >
+    <Icon name="akar-icons:moon-fill" />
+  </span>
+</button>
+
+<script is:inline>
+  // Icons
+  const sunIcon = document.querySelector("#sun");
+  const moonIcon = document.querySelector("#moon");
+
+  // Theme variables
+  const userTheme = localStorage.theme;
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  console.log(userTheme);
+  console.log(systemTheme);
+
+  // Icon toggling
+  const iconToggle = () => {
+    moonIcon?.classList.toggle("hidden");
+    sunIcon?.classList.toggle("hidden");
+  };
+
+  // Initial theme check
+  const themeCheck = () => {
+    if (userTheme === "dark" || (!userTheme && systemTheme)) {
+      document.documentElement.classList.add("dark");
+      moonIcon?.classList.add("hidden");
+      return;
+    }
+    sunIcon?.classList.add("hidden");
+  };
+
+  // Manual theme switch
+  const themeSwitch = () => {
+    if (document.documentElement.classList.contains("dark")) {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+      iconToggle;
+      return;
+    }
+    document.documentElement.classList.add("dark");
+    localStorage.theme = "dark";
+    iconToggle;
+  };
+
+  // Call theme switch on clicking buttons
+  sunIcon?.addEventListener("click", () => {
+    themeSwitch();
+  });
+
+  moonIcon?.addEventListener("click", () => {
+    themeSwitch();
+  });
+
+  // Invoke theme check on initial load
+  themeCheck();
+</script>
