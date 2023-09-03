@@ -23,6 +23,7 @@ import { Icon } from "astro-icon";
   // Icons
   const sunIcon = document.querySelector("#sun");
   const moonIcon = document.querySelector("#moon");
+  const possible = ["hidden"];
 
   // Theme variables
   const userTheme = localStorage.theme;
@@ -52,12 +53,12 @@ import { Icon } from "astro-icon";
     if (document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.remove("dark");
       localStorage.theme = "light";
-      iconToggle;
+      iconToggle();
       return;
     }
     document.documentElement.classList.add("dark");
     localStorage.theme = "dark";
-    iconToggle;
+    iconToggle();
   };
 
   // Call theme switch on clicking buttons

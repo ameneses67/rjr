@@ -1,6 +1,12 @@
 ---
-import Header from "../components/header/Header.astro";
+// Layouts
 import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import Hero from "../components/hero/Hero.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Main from "../components/elements/Main.astro";
+import Header from "../components/header/Header.astro";
 
 const title = "Inicio";
 const description =
@@ -9,5 +15,8 @@ const description =
 
 <MainLayout {title} {description}>
   <Header />
-  <h1 class="text-4xl font-bold text-indigo-500">Astro</h1>
+  <Main>
+    <Hero />
+    <Testimonials />
+  </Main>
 </MainLayout>

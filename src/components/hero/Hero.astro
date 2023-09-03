@@ -1,0 +1,40 @@
+---
+// Librerias
+import { Image } from "astro:assets";
+
+// Componentes
+import FormBoletin from "./FormBoletin.astro";
+import Heading from "../elements/Heading.astro";
+
+// Imágenes
+import Bodyshot from "../../assets/hero/bodyshot.png";
+import TestimonioCard from "./TestimonioCard.astro";
+---
+
+<section
+  class="w-full border-b border-slate-200 bg-gradient-to-b from-white to-slate-50 dark:border-slate-800 dark:from-slate-900 dark:to-slate-900 sm:gap-6"
+>
+  <div class="flex justify-center gap-8">
+    <div class="space-y-4 py-4 pl-4 sm:space-y-8 sm:py-6 sm:pl-6">
+      <Heading
+        text="Recibe tips financieros exclusivos para los suscriptores"
+        tagType="h1"
+        hClass="h1"
+        classes="text-left max-w-xl"
+      />
+      <TestimonioCard classes="hidden md:block" />
+      <FormBoletin classes="hidden lg:block" />
+    </div>
+    <div class="flex items-end pr-4 sm:pr-6">
+      <Image
+        src={Bodyshot}
+        alt={"Alfonso Meneses"}
+        format="avif"
+        quality="mid"
+      />
+    </div>
+  </div>
+  <FormBoletin
+    classes="lg:hidden border-t border-slate-200 dark:border-slate-800 py-4 px-4 sm:px-6"
+  />
+</section>
