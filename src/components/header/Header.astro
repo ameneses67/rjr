@@ -1,4 +1,6 @@
 ---
+// Componentes
+import Hamburger from "./Hamburger.astro";
 import Icons from "./Icons.astro";
 import Navbar from "./Navbar.astro";
 ---
@@ -11,8 +13,9 @@ import Navbar from "./Navbar.astro";
       ><span class="font-bold text-indigo-500">Retirate</span>JovenRico</a
     >
     <div class="flex items-center space-x-8">
-      <Navbar />
+      <Navbar classes="" />
       <Icons />
+      <Hamburger classes="md:hidden" />
     </div>
   </div>
 </header>

@@ -1,0 +1,65 @@
+---
+// Librerías
+import { twMerge } from "tailwind-merge";
+
+interface Props {
+  classes?: string;
+}
+
+const { classes } = Astro.props;
+---
+
+<button
+  class={twMerge(
+    "rounded-md border-2 border-slate-200 bg-transparent dark:border-indigo-500",
+    classes,
+  )}
+  aria-controls="primary-navigation"
+  aria-expanded="false"
+>
+  <svg
+    class="fill-slate-200 dark:fill-indigo-500"
+    viewBox="0 0 100 100"
+    width="25"
+  >
+    <rect class="line top" width="80" height="10" x="10" y="25" rx="5"></rect>
+    <rect class="line middle" width="80" height="10" x="10" y="45" rx="5"
+    ></rect>
+    <rect class="line bottom" width="80" height="10" x="10" y="65" rx="5"
+    ></rect>
+  </svg>
+</button>
+
+<style>
+  .line {
+    transition:
+      transform 300ms ease-in 300ms,
+      rotate 300ms ease-in,
+      opacity 0ms 300ms;
+    transform-origin: center;
+  }
+
+  button:hover .line {
+    transition:
+      transform 300ms ease-in,
+      rotate 300ms ease-in 300ms,
+      opacity 0ms 300ms;
+  }
+
+  button:hover .top {
+    transform: translateY(20px);
+    rotate: 45deg;
+  }
+
+  button:hover .middle {
+    opacity: 0;
+  }
+
+  button:hover .bottom {
+    transform: translateY(-20px);
+    rotate: -45deg;
+  }
+
+  button[aria-expanded="true"] .top {
+  }
+</style>

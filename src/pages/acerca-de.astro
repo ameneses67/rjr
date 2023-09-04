@@ -1,6 +1,10 @@
 ---
-import Header from "../components/header/Header.astro";
+// Layouts
 import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import Hamburger from "../components/header/Hamburger.astro";
+import Header from "../components/header/Header.astro";
 
 const title = "Acerca de";
 const description =
@@ -10,4 +14,5 @@ const description =
 <MainLayout {title} {description}>
   <Header />
   <h1 class="text-4xl font-bold text-indigo-500">Acerca de</h1>
+  <Hamburger />
 </MainLayout>

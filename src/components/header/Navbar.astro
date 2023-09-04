@@ -1,8 +1,20 @@
 ---
+// Librerías
+import { twMerge } from "tailwind-merge";
+
+// Data
 import { navMenu } from "../../data/navMenu";
+
+interface Props {
+  classes?: string;
+}
+
+const { classes } = Astro.props;
 ---
 
-<nav class="font-semibold text-slate-700 dark:text-slate-200">
+<nav
+  class={twMerge("font-semibold text-slate-700 dark:text-slate-200", classes)}
+>
   <ul class="flex space-x-12">
     {
       navMenu.map((item) => (
