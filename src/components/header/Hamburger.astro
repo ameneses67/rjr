@@ -10,17 +10,15 @@ const { classes } = Astro.props;
 ---
 
 <button
-  class={twMerge(
-    "rounded-md border-2 border-slate-200 bg-transparent dark:border-indigo-500",
-    classes,
-  )}
+  id="hamburger"
+  class={twMerge(classes)}
   aria-controls="primary-navigation"
   aria-expanded="false"
 >
   <svg
-    class="fill-slate-200 dark:fill-indigo-500"
+    class="fill-slate-400 dark:fill-indigo-500"
     viewBox="0 0 100 100"
-    width="25"
+    width="35"
   >
     <rect class="line top" width="80" height="10" x="10" y="25" rx="5"></rect>
     <rect class="line middle" width="80" height="10" x="10" y="45" rx="5"
@@ -39,27 +37,40 @@ const { classes } = Astro.props;
     transform-origin: center;
   }
 
-  button:hover .line {
+  #hamburger[aria-expanded="true"] .line {
     transition:
       transform 300ms ease-in,
       rotate 300ms ease-in 300ms,
       opacity 0ms 300ms;
   }
 
-  button:hover .top {
+  #hamburger[aria-expanded="true"] .top {
     transform: translateY(20px);
     rotate: 45deg;
   }
 
-  button:hover .middle {
+  #hamburger[aria-expanded="true"] .middle {
     opacity: 0;
   }
 
-  button:hover .bottom {
+  #hamburger[aria-expanded="true"] .bottom {
     transform: translateY(-20px);
     rotate: -45deg;
   }
-
-  button[aria-expanded="true"] .top {
-  }
 </style>
+
+<script>
+  const hamburger = document.querySelector("#hamburger");
+  const navbar = document.querySelector("#navbar");
+
+  hamburger?.addEventListener("click", () => {
+    const isOpened = hamburger.getAttribute("aria-expanded");
+    if (isOpened === "false") {
+      hamburger.setAttribute("aria-expanded", "true");
+      navbar?.classList.toggle("hidden");
+    } else {
+      hamburger.setAttribute("aria-expanded", "false");
+      navbar?.classList.toggle("hidden");
+    }
+  });
+</script>

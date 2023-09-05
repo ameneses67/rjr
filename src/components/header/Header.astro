@@ -13,9 +13,11 @@ import Navbar from "./Navbar.astro";
       ><span class="font-bold text-indigo-500">Retirate</span>JovenRico</a
     >
     <div class="flex items-center space-x-8">
-      <Navbar classes="" />
+      <Navbar
+        classes="absolute inset-0 bg-indigo-500 md:bg-inherit hidden md:static md:block"
+      />
       <Icons />
-      <Hamburger classes="md:hidden" />
+      <Hamburger classes="md:hidden z-10" />
     </div>
   </div>
 </header>
