@@ -1,0 +1,53 @@
+---
+// Librerías
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+// Layouts
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import Heading from "../components/elements/Heading.astro";
+import Header from "../components/header/Header.astro";
+import Main from "../components/elements/Main.astro";
+
+const allBlogPosts = await getCollection("blog");
+
+const title = "Blog";
+const description =
+  "En nuestro blog encontrarás artículos básicos que te ayudarán a empezar a educarte en finanzas personales.";
+---
+
+<MainLayout {title} {description}>
+  <Header />
+  <Main>
+    <Heading tagType="h1" hClass="h1">Nuestro blog</Heading>
+    {
+      allBlogPosts.map((post) => (
+        <div class="flex flex-col justify-center gap-4 lg:flex-row">
+          <div class="w-full">
+            <a href={post.slug}>
+              <Image
+                src={post.data.image.src}
+                alt={post.data.image.alt}
+                width={600}
+                height={400}
+                format="avif"
+                quality={"low"}
+                class="object-cover"
+              />
+            </a>
+          </div>
+          <div class="w-full">
+            <a href={post.slug}>
+              <Heading tagType="h2" hClass="h3" classes="text-left">
+                {post.data.title}
+              </Heading>
+            </a>
+            <p>{post.data.snippet}</p>
+          </div>
+        </div>
+      ))
+    }
+  </Main>
+</MainLayout>
