@@ -7,6 +7,8 @@ import Hero from "../components/hero/Hero.astro";
 import Testimonials from "../components/Testimonials.astro";
 import Main from "../components/elements/Main.astro";
 import Header from "../components/header/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon";
 
 const title = "Inicio";
 const description =
@@ -18,5 +20,7 @@ const description =
   <Main>
     <Hero />
     <Testimonials />
+    <Icon name="wave" class="mx-auto w-32 text-indigo-500" />
   </Main>
+  <Footer />
 </MainLayout>

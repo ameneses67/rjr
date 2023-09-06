@@ -18,15 +18,12 @@ const testimoniosInicio = testimonios.filter(
 
 <section class="max-w-4xl px-4 sm:px-6">
   <TestimonioCard classes="mx-auto mb-16 sm:mb-24 md:hidden max-w-md" />
-  <Heading
-    text="Lo que otros opinan"
-    tagType="h2"
-    hClass="h2"
-    classes="mb-28 sm:mb-40 text-center"
-  />
+  <Heading tagType="h2" hClass="h2" classes="mb-28 sm:mb-40 text-center">
+    Lo que otros opinan
+  </Heading>
   {
     testimoniosInicio.map((testimonio) => (
-      <div class="relative mb-24 flex flex-col items-center gap-8 rounded-lg border border-slate-200 px-4 pb-8 text-center dark:border-slate-800 sm:mb-48 sm:px-12">
+      <div class="relative mb-24 flex flex-col items-center gap-8 rounded-lg border border-slate-200 px-4 pb-8 text-center last:mb-0 dark:border-slate-800 sm:mb-48 sm:px-12">
         <Image
           src={testimonio.foto.src}
           alt={testimonio.foto.alt}

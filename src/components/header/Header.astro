@@ -2,16 +2,15 @@
 // Componentes
 import Hamburger from "./Hamburger.astro";
 import Icons from "./Icons.astro";
+import Logo from "./Logo.astro";
 import Navbar from "./Navbar.astro";
 ---
 
-<header class="border-b border-slate-200 dark:border-slate-800">
+<header>
   <div
     class="container mx-auto flex items-center justify-between px-4 py-4 sm:px-6 sm:py-8"
   >
-    <a class="dark:text-white" href="/"
-      ><span class="font-bold text-indigo-500">Retirate</span>JovenRico</a
-    >
+    <Logo />
     <div class="flex items-center space-x-8">
       <Navbar
         classes="absolute inset-0 bg-indigo-500 md:bg-inherit hidden md:static md:block"

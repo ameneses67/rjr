@@ -1,0 +1,13 @@
+---
+// Librerías
+import { twMerge } from "tailwind-merge";
+interface Props {
+  classes?: string;
+}
+
+const { classes } = Astro.props;
+---
+
+<a class={twMerge("dark:text-white", classes)} href="/"
+  ><span class="font-bold text-indigo-500">Retirate</span>JovenRico</a
+>

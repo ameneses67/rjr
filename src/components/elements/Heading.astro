@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 interface Props {
   tagType: string;
-  hClass: "h1" | "h2" | "h3";
+  hClass: "h1" | "h2" | "h3" | "h4";
   hClasses?: string[];
   classes?: string;
 }
@@ -59,6 +59,11 @@ const Tag = tagType;
     .h3 {
       font-size: 1.5rem;
       line-height: 2rem;
+    }
+
+    .h4 {
+      font-size: 1rem;
+      line-height: 1.5rem;
     }
   }
 </style>

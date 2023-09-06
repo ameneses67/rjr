@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon";
+import Heading from "./elements/Heading.astro";
+import Logo from "./header/Logo.astro";
+
+// Utilidades
+import { currentYear } from "../utils/utils";
+---
+
+<footer class="bg-slate-950">
+  <div
+    class="container mx-auto grid grid-cols-2 gap-8 px-4 py-12 sm:grid-cols-4
+    sm:px-6
+    lg:grid-cols-5"
+  >
+    <div class="col-span-2 space-y-4">
+      <Logo classes="text-white text-3xl" />
+      <p class="max-w-xs text-xl">
+        Pasa al siguiente nivel y toma control de tu destino financiero
+      </p>
+    </div>
+    <div class="space-y-5">
+      <Heading tagType="h3" hClass="h4" classes="text-left mt-2">
+        Aprende
+      </Heading>
+      <ul class="space-y-2">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/boletin">Boletín</a></li>
+        <li><a href="/cursos">Cursos</a></li>
+      </ul>
+    </div>
+    <div class="space-y-5">
+      <Heading tagType="h3" hClass="h4" classes="text-left mt-2">
+        Acerca de
+      </Heading>
+      <ul class="space-y-2">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/acerca-de">Nosotros</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="space-y-4">
+      <Heading
+        tagType="h3"
+        hClass="h4"
+        classes="text-left mt-2 hidden lg:block"
+      >
+        Conecta
+      </Heading>
+      <div class="flex gap-4">
+        <a href="https://twitter.com/retiratejoven" target="_blank">
+          <Icon
+            class="w-8 transition hover:text-slate-300"
+            name="mdi:twitter"
+          />
+        </a>
+        <a href="https://youtube.com" target="_blank">
+          <Icon class="w-8 hover:text-slate-300" name="mdi:youtube" />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <Icon class="w-8 hover:text-slate-300" name="ri:instagram-fill" />
+        </a>
+      </div>
+    </div>
+  </div>
+  <div
+    class="container mx-auto grid grid-cols-3 gap-2 border-t border-slate-900 px-4 py-6 dark:text-slate-700 sm:px-6 lg:grid-cols-5"
+  >
+    <p class="order-last col-span-3 lg:order-first">
+      Retirate Joven y Rico &#174; {currentYear} Derechos Reservados
+    </p>
+    <a class="transition hover:text-slate-600" href="/terminos-servicio"
+      >Términos de servicio</a
+    >
+    <a class="transition hover:text-slate-600" href="/politica-privacidad"
+      >Política de privacidad</a
+    >
+  </div>
+</footer>
