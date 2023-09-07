@@ -10,8 +10,21 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Heading from "../components/elements/Heading.astro";
 import Header from "../components/header/Header.astro";
 import Main from "../components/elements/Main.astro";
+import BlogCard from "../components/BlogCard.astro";
 
-const allBlogPosts = await getCollection("blog");
+// Utilidades
+import { getFormattedDate } from "../utils/utils";
+
+// Filtrar posts draft=true y no futuros
+const publishedBlogPosts = await getCollection(
+  "blog",
+  ({ data }) => !data.draft && data.publishDate < new Date(),
+);
+
+// Ordenar posts por fecha
+publishedBlogPosts.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
 
 const title = "Blog";
 const description =
@@ -22,32 +35,22 @@ const description =
   <Header />
   <Main>
     <Heading tagType="h1" hClass="h1">Nuestro blog</Heading>
-    {
-      allBlogPosts.map((post) => (
-        <div class="flex flex-col justify-center gap-4 lg:flex-row">
-          <div class="w-full">
-            <a href={post.slug}>
-              <Image
-                src={post.data.image.src}
-                alt={post.data.image.alt}
-                width={600}
-                height={400}
-                format="avif"
-                quality={"low"}
-                class="object-cover"
-              />
-            </a>
-          </div>
-          <div class="w-full">
-            <a href={post.slug}>
-              <Heading tagType="h2" hClass="h3" classes="text-left">
-                {post.data.title}
-              </Heading>
-            </a>
-            <p>{post.data.snippet}</p>
-          </div>
-        </div>
-      ))
-    }
+    <div class="container mx-auto space-y-8 px-4 sm:px-6">
+      {
+        publishedBlogPosts.map((post) => (
+          <article class="mx-auto max-w-3xl">
+            <BlogCard
+              blogTitle={post.data.title}
+              updatedDate={post.data.publishDate}
+              author={post.data.author}
+              snippet={post.data.snippet}
+              imgSrc={post.data.image.src}
+              imgAlt={post.data.image.alt}
+              slug={post.slug}
+            />
+          </article>
+        ))
+      }
+    </div>
   </Main>
 </MainLayout>

@@ -13,7 +13,7 @@ const blogCollection = defineCollection({
         src: image(),
         alt: z.string(),
       }),
-      publishDate: z.date(),
+      publishDate: z.string().transform((str) => new Date(str)),
       category: z.string(),
       author: z.string().default("Ponchito"),
       tags: z.array(z.string()),
