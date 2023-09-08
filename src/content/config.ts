@@ -14,7 +14,12 @@ const blogCollection = defineCollection({
         alt: z.string(),
       }),
       publishDate: z.string().transform((str) => new Date(str)),
-      category: z.string(),
+      updateDate: z.string().transform((str) => new Date(str)),
+      category: z.enum([
+        "Educación financiera",
+        "Pon tu dinero a trabajar",
+        "Piensa como rico",
+      ]),
       author: z.string().default("Ponchito"),
       tags: z.array(z.string()),
     }),
@@ -22,5 +27,5 @@ const blogCollection = defineCollection({
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
-  blog: blogCollection,
+  posts: blogCollection,
 };

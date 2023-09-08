@@ -1,0 +1,32 @@
+---
+// Librerías
+import { Image } from "astro:assets";
+
+// Componentes
+import Heading from "../elements/Heading.astro";
+import FormBoletin from "../hero/FormBoletin.astro";
+
+// Imágenes
+import Joel from "../../assets/testimonials/joel-sanchez.jpg";
+---
+
+<section
+  class="w-full bg-gradient-to-b from-white to-slate-50 pb-16 dark:from-slate-900 dark:to-slate-950 sm:pb-24"
+>
+  <div class="container mx-auto space-y-10">
+    <Heading tagType="h1" hClass="h1">
+      Recibe tips financieros exclusivos
+    </Heading>
+    <div class="mx-auto flex items-center justify-center gap-8">
+      <div class="h-16 w-16 overflow-hidden rounded-full">
+        <Image src={Joel} alt="Foto de Joel Sánchez" width={70} />
+      </div>
+      <p class="max-w-xs">
+        Recibe los mismos tips que utlicé para retirarme antes de los <strong
+          >50 años</strong
+        >
+      </p>
+    </div>
+    <FormBoletin text="Inténtalo" classes="max-w-md mx-auto" />
+  </div>
+</section>

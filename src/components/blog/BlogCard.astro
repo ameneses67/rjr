@@ -1,0 +1,72 @@
+---
+// Librerías
+import { Image } from "astro:assets";
+
+// Componentes
+import Heading from "../elements/Heading.astro";
+import Link from "../elements/Link.astro";
+
+// Utilidades
+import { getFormattedDate } from "../../utils/utils";
+
+interface Props {
+  blogTitle: string;
+  updatedDate: Date;
+  author: string;
+  snippet: string;
+  imgSrc: ImageMetadata;
+  imgAlt: string;
+  category: string;
+  slug: string;
+}
+
+const {
+  blogTitle,
+  updatedDate,
+  author,
+  snippet,
+  imgSrc,
+  imgAlt,
+  category,
+  slug,
+} = Astro.props;
+---
+
+<>
+  <a href={slug}>
+    <Heading tagType="h2" hClass="h2" classes="text-left">
+      {blogTitle}
+    </Heading>
+  </a>
+  <p class="text-sm text-slate-400">
+    Por: {author} &bull; Actualizado: <time
+      >{getFormattedDate(updatedDate)}</time
+    >
+  </p>
+  <div>
+    <div class="relative mx-auto aspect-video max-w-2xl">
+      <a href={slug}>
+        <Image
+          src={imgSrc}
+          alt={imgAlt}
+          width={672}
+          format="avif"
+          quality="low"
+          class="aspect-video rounded-lg object-cover shadow-lg"
+        />
+      </a>
+      <Link
+        href=""
+        class="absolute bottom-0 left-0 rounded-lg bg-slate-950 py-1 text-sm capitalize"
+      >
+        {category}
+      </Link>
+    </div>
+  </div>
+  <div class="space-y-4">
+    <Fragment set:html={snippet} />
+  </div>
+  <div class="pt-4">
+    <Link href={slug}>Seguir leyendo...</Link>
+  </div>
+</>

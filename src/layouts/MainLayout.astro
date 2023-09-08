@@ -2,6 +2,9 @@
 import "@fontsource-variable/inter";
 
 import BaseHead from "./BaseHead.astro";
+import Header from "../components/header/Header.astro";
+import Footer from "../components/Footer.astro";
+import Main from "../components/elements/Main.astro";
 
 type Props = {
   title: string;
@@ -17,6 +20,10 @@ const { title, description } = Astro.props;
   <body
     class="space-y-8 bg-white text-slate-500 dark:bg-slate-900 dark:text-slate-400 sm:space-y-16"
   >
-    <slot />
+    <Header />
+    <Main>
+      <slot />
+    </Main>
+    <Footer />
   </body>
 </html>

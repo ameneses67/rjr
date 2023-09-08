@@ -1,53 +1,45 @@
 ---
-// library imports
-import { Icon } from "astro-icon";
-
 interface Props {
-  text: string;
   href: string;
-  style: "primary" | "secondary";
-  icon?: {
-    name: string;
-    side: "left" | "right";
-  };
-  isFilled?: boolean;
-  borderVisible?: boolean;
-  classes?: string;
+  size?: "md" | "lg";
+  block?: boolean;
+  style?: "outline" | "primary" | "inverted" | "muted";
+  class?: string;
+  [x: string]: any;
 }
 
 const {
-  text,
   href,
-  style,
-  icon,
-  isFilled = true,
-  borderVisible = false,
-  classes,
+  block,
+  size = "lg",
+  style = "primary",
+  class: className,
   ...rest
-} = Astro.props as Props;
+} = Astro.props;
+
+const sizes = {
+  lg: "px-5 py-2.5",
+  md: "px-4 py-2",
+};
+
+const styles = {
+  outline: "bg-white border-2 border-black hover:bg-gray-100 text-black ",
+  primary:
+    "bg-indigo-500 text-white hover:bg-indigo-600 hover:shadow-lg  border-2 border-transparent",
+  inverted: "bg-white text-black   border-2 border-transparent",
+  muted: "bg-gray-100 hover:bg-gray-200   border-2 border-transparent",
+};
 ---
 
 <a
   href={href}
-  class:list={[
-    "link",
-    classes,
-    style,
-    { filled: isFilled, bordered: borderVisible },
-  ]}
   {...rest}
->
-  {
-    icon && icon.side === "left" && (
-      <Icon name={icon.name} height="24" width="24" />
-    )
-  }
-
-  <span>{text}</span>
-
-  {
-    icon && icon.side === "right" && (
-      <Icon name={icon.name} height="24" width="24" />
-    )
-  }
+  class:list={[
+    "rounded text-center ring-gray-200 ring-offset-2 transition focus-visible:ring-2",
+    block && "w-full",
+    sizes[size],
+    styles[style],
+    className,
+  ]}
+  ><slot />
 </a>
