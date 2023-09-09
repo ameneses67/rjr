@@ -7,7 +7,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("posts");
+  const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -20,8 +20,15 @@ const { Content } = await entry.render();
 ---
 
 <MainLayout title={entry.data.title} description={entry.data.description}>
-  <article class="container prose mx-auto dark:prose-invert">
+  <article class="container prose mx-auto px-4 dark:prose-invert sm:px-6">
     <h1>{entry.data.title}</h1>
     <Content />
   </article>
+  <div>
+    <a
+      href="/blog"
+      class="rounded-md bg-indigo-500 px-5 py-3 text-white transition hover:bg-indigo-600"
+      >← Blog</a
+    >
+  </div>
 </MainLayout>

@@ -11,7 +11,7 @@ import BlogCard from "../components/blog/BlogCard.astro";
 
 // Filtrar posts draft=true y no futuros
 export const publishedBlogPosts = await getCollection(
-  "posts",
+  "blog",
   ({ data }) => !data.draft && data.publishDate < new Date(),
 );
 
