@@ -7,13 +7,13 @@ import { Icon } from "astro-icon";
 >
   <span
     id="sun"
-    class="h-6 w-6 cursor-pointer text-slate-400 hover:text-slate-500 dark:text-slate-700 dark:hover:text-slate-600"
+    class="dark:text-skin-base-dark dark:hover:text-skin-base-dark-hvr h-6 w-6 cursor-pointer"
   >
     <Icon name="fa-solid:sun" />
   </span>
   <span
     id="moon"
-    class="h-6 w-6 cursor-pointer text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+    class="text-skin-base hover:text-skin-base-hvr h-6 w-6 cursor-pointer"
   >
     <Icon name="akar-icons:moon-fill" />
   </span>
@@ -23,7 +23,6 @@ import { Icon } from "astro-icon";
   // Icons
   const sunIcon = document.querySelector("#sun");
   const moonIcon = document.querySelector("#moon");
-  const possible = ["hidden"];
 
   // Theme variables
   const userTheme = localStorage.theme;

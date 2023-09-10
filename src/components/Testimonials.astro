@@ -18,7 +18,7 @@ const testimoniosInicio = testimonios.filter(
 
 <section class="max-w-4xl px-4 sm:px-6">
   <TestimonioCard classes="mx-auto mb-16 sm:mb-24 md:hidden max-w-md" />
-  <Heading tagType="h2" hClass="h2" classes="mb-28 sm:mb-40 text-center">
+  <Heading tagType="h2" hClass="h2" classes="mb-28 sm:mb-40">
     Lo que otros opinan
   </Heading>
   {
@@ -35,7 +35,7 @@ const testimoniosInicio = testimonios.filter(
           {testimonio.descripcion}
         </p>
         <p>
-          <span class="font-bold text-indigo-500">{testimonio.nombre}</span> ∙
+          <span class="text-skin-accent font-bold">{testimonio.nombre}</span> ∙
           {testimonio.ocupacion}
         </p>
       </div>

@@ -13,7 +13,7 @@ interface ITestimonios {
 
 export const testimonios = [
   {
-    nombre: "Jacienta Ramirez",
+    nombre: "Jacinta Ramirez",
     ocupacion: "Asistente dirección",
     descripcion:
       "Cuanta verdad en los artículos del blog. Mi perspectiva respecto al dinero empezó a cambiar tan pronto empecé a leerlos. Te abren los ojos ha una realidad diferente.",

@@ -5,65 +5,32 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   tagType: string;
   hClass: "h1" | "h2" | "h3" | "h4";
-  hClasses?: string[];
+  hClassBase?: string[];
   classes?: string;
 }
 
 const {
   tagType,
   hClass,
-  hClasses = [
+  hClassBase = [
     "font-bold",
-    "text-slate-800",
-    "dark:text-slate-200",
+    "text-skin-hdng-base",
+    "dark:text-skin-hdng-base-dark",
     "text-center",
   ],
   classes,
 } = Astro.props;
 
 const Tag = tagType;
+
+const hClasses = {
+  h1: "text-4xl capitalize sm:text-5xl",
+  h2: "text-2xl sm:text-3xl",
+  h3: "text-xl sm:text-2xl",
+  h4: "text-base",
+};
 ---
 
-<Tag class:list={twMerge([hClass, hClasses, classes])}>
+<Tag class:list={twMerge([hClassBase, hClasses[hClass], classes])}>
   <slot />
 </Tag>
-
-<style>
-  .h1 {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    text-transform: capitalize;
-  }
-
-  .h2 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .h3 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
-  @media (min-width: 640px) {
-    .h1 {
-      font-size: 3rem;
-      line-height: 1;
-    }
-
-    .h2 {
-      font-size: 1.875rem;
-      line-height: 2.25rem;
-    }
-
-    .h3 {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
-
-    .h4 {
-      font-size: 1rem;
-      line-height: 1.5rem;
-    }
-  }
-</style>

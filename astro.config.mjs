@@ -9,5 +9,10 @@ export default defineConfig({
   build: {
     format: "file",
   },
-  integrations: [tailwind(), mdx()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    mdx(),
+  ],
 });

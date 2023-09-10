@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --clr-accent: #6366f1;
+    --clr-accent-hvr: #4f46e5;
+    --clr-txt-base: #64748b;
+    --clr-txt-base-hvr: #475569;
+    --clr-txt-base-dark: #94a3b8;
+    --clr-txt-base-dark-hvr: #cbd5e1;
+    --clr-hdng-base: #1e293b;
+    --clr-hdng-base-dark: #e2e8f0;
+    --clr-bg: #ffffff;
+    --clr-bg-shade: #f8fafc;
+    --clr-bg-dark: #0f172a;
+    --clr-bg-shade-dark: #1e293b;
+    --clr-bg-very-dark: #020617;
+  }
+
+  .theme-sky {
+    --clr-accent: #0ea5e9;
+    --clr-accent-hvr: #0284c7;
+    --clr-txt-base: #64748b;
+    --clr-txt-base-hvr: #475569;
+    --clr-txt-base-dark: #94a3b8;
+    --clr-txt-base-dark-hvr: #cbd5e1;
+    --clr-hdng-base: #1e293b;
+    --clr-hdng-base-dark: #e2e8f0;
+    --clr-bg: #ffffff;
+    --clr-bg-shade: #f8fafc;
+    --clr-bg-dark: #0f172a;
+    --clr-bg-shade-dark: #1e293b;
+    --clr-bg-very-dark: #020617;
+  }
+
+  .theme-violet {
+    --clr-accent: #8b5cf6;
+    --clr-accent-hvr: #7c3aed;
+    --clr-txt-base: #64748b;
+    --clr-txt-base-hvr: #475569;
+    --clr-txt-base-dark: #94a3b8;
+    --clr-txt-base-dark-hvr: #cbd5e1;
+    --clr-hdng-base: #1e293b;
+    --clr-hdng-base-dark: #e2e8f0;
+    --clr-bg: #ffffff;
+    --clr-bg-shade: #f8fafc;
+    --clr-bg-dark: #0f172a;
+    --clr-bg-shade-dark: #1e293b;
+    --clr-bg-very-dark: #020617;
+  }
+
+  .theme-emerald {
+    --clr-accent: #10b981;
+    --clr-accent-hvr: #059669;
+    --clr-txt-base: #64748b;
+    --clr-txt-base-hvr: #475569;
+    --clr-txt-base-dark: #94a3b8;
+    --clr-txt-base-dark-hvr: #cbd5e1;
+    --clr-hdng-base: #1e293b;
+    --clr-hdng-base-dark: #e2e8f0;
+    --clr-bg: #ffffff;
+    --clr-bg-shade: #f8fafc;
+    --clr-bg-dark: #0f172a;
+    --clr-bg-shade-dark: #1e293b;
+    --clr-bg-very-dark: #020617;
+  }
+}
