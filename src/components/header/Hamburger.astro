@@ -62,15 +62,33 @@ const { classes } = Astro.props;
 <script>
   const hamburger = document.querySelector("#hamburger");
   const navbar = document.querySelector("#navbar");
+  const svg = document.querySelector("#hamburger svg");
+  const logo = document.querySelector("#logo");
+  const logoSpan = document.querySelector("#logoSpan");
+  const body = document.querySelector("body");
 
   hamburger?.addEventListener("click", () => {
     const isOpened = hamburger.getAttribute("aria-expanded");
     if (isOpened === "false") {
       hamburger.setAttribute("aria-expanded", "true");
+      svg?.classList.add("fill-white");
+      svg?.classList.remove("fill-slate-500");
+      svg?.classList.remove("dark:fill-slate-400");
+      logo?.classList.toggle("text-white");
+      logoSpan?.classList.toggle("text-white");
       navbar?.classList.toggle("hidden");
+      navbar?.classList.toggle("grid");
+      body?.classList.toggle("overflow-hidden");
     } else {
       hamburger.setAttribute("aria-expanded", "false");
+      svg?.classList.remove("fill-white");
+      svg?.classList.add("fill-slate-500");
+      svg?.classList.add("dark:fill-slate-400");
+      logoSpan?.classList.toggle("text-white");
+      logo?.classList.toggle("text-white");
       navbar?.classList.toggle("hidden");
+      navbar?.classList.toggle("grid");
+      body?.classList.toggle("overflow-hidden");
     }
   });
 </script>

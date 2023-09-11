@@ -14,18 +14,16 @@ const { classes } = Astro.props;
 
 <nav
   id="navbar"
-  class={twMerge("font-semibold text-slate-700 dark:text-slate-200", classes)}
+  class={twMerge(
+    "md:font-semibold md:text-base md:text-skin-base dark:md:text-skin-base-dark",
+    classes,
+  )}
 >
   <ul class="flex flex-col gap-12 md:flex-row">
     {
       navMenu.map((item) => (
-        <li>
-          <a
-            class="hover:text-indigo-500 dark:hover:text-indigo-400"
-            href={item.linkURL}
-          >
-            {item.linkName}
-          </a>
+        <li class="hover:text-skin-base-hvr hover:dark:text-skin-base-dark-hvr">
+          <a href={item.linkURL}>{item.linkName}</a>
         </li>
       ))
     }

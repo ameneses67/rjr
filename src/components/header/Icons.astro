@@ -7,13 +7,13 @@ import { Icon } from "astro-icon";
 >
   <span
     id="sun"
-    class="dark:text-skin-base-dark dark:hover:text-skin-base-dark-hvr h-6 w-6 cursor-pointer"
+    class="h-6 w-6 cursor-pointer dark:text-skin-base-dark dark:hover:text-skin-base-dark-hvr"
   >
     <Icon name="fa-solid:sun" />
   </span>
   <span
     id="moon"
-    class="text-skin-base hover:text-skin-base-hvr h-6 w-6 cursor-pointer"
+    class="h-6 w-6 cursor-pointer text-skin-base hover:text-skin-base-hvr"
   >
     <Icon name="akar-icons:moon-fill" />
   </span>
@@ -27,9 +27,6 @@ import { Icon } from "astro-icon";
   // Theme variables
   const userTheme = localStorage.theme;
   const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  console.log(userTheme);
-  console.log(systemTheme);
 
   // Icon toggling
   const iconToggle = () => {
