@@ -1,0 +1,60 @@
+---
+// Librerías
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+// Layouts
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Utilidades
+import { slugify } from "../utils/utils";
+import Heading from "../components/elements/Heading.astro";
+
+export const getStaticPaths = (() => {
+  return [
+    {
+      params: { categoria: slugify("Piensa como rico") },
+      props: { name: "Piensa como rico" },
+    },
+    {
+      params: { categoria: slugify("Educación financiera") },
+      props: { name: "Educación financiera" },
+    },
+    {
+      params: { categoria: slugify("Pon tu dinero a trabajar") },
+      props: { name: "Pon tu dinero a trabajar" },
+    },
+  ];
+}) satisfies GetStaticPaths;
+
+const { categoria } = Astro.params;
+const { name } = Astro.props;
+
+// Filtrar posts draft=true, no futuros y posts correspondientes a cada categoría
+const publishedBlogPosts = await getCollection(
+  "blog",
+  ({ data }) =>
+    !data.draft &&
+    data.publishDate < new Date() &&
+    slugify(data.category) === categoria,
+);
+
+// Ordenar posts por fecha
+publishedBlogPosts.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<MainLayout title={name} description="Categorías de los artículos">
+  <Heading tagType="h1" hClass="h1">
+    {name}
+  </Heading>
+  {
+    publishedBlogPosts.map((post) => (
+      <>
+        <h2>{post.data.title}</h2>
+        <p>{post.data.category}</p>
+      </>
+    ))
+  }
+</MainLayout>

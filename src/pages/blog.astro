@@ -10,7 +10,7 @@ import BlogHero from "../components/blog/BlogHero.astro";
 import BlogCard from "../components/blog/BlogCard.astro";
 
 // Filtrar posts draft=true y no futuros
-export const publishedBlogPosts = await getCollection(
+const publishedBlogPosts = await getCollection(
   "blog",
   ({ data }) => !data.draft && data.publishDate < new Date(),
 );
@@ -20,8 +20,8 @@ publishedBlogPosts.sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
 );
 
-export const title = "Blog";
-export const description =
+const title = "Blog";
+const description =
   "En nuestro blog encontrarás artículos básicos que te ayudarán a empezar a educarte en finanzas personales.";
 ---
 
