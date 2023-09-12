@@ -1,6 +1,9 @@
 ---
-// Librerías
+// Types
 import type { GetStaticPaths } from "astro";
+
+// Librerías
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 
 // Layouts
@@ -12,25 +15,18 @@ import Heading from "../components/elements/Heading.astro";
 // Utilidades
 import { slugify } from "../utils/utils";
 
-export const getStaticPaths = (() => {
-  return [
-    {
-      params: { categoria: slugify("Piensa como rico") },
-      props: { name: "Piensa como rico" },
-    },
-    {
-      params: { categoria: slugify("Educación financiera") },
-      props: { name: "Educación financiera" },
-    },
-    {
-      params: { categoria: slugify("Pon tu dinero a trabajar") },
-      props: { name: "Pon tu dinero a trabajar" },
-    },
-  ];
+export const getStaticPaths = (async () => {
+  const allPosts = await getCollection("blog");
+  return allPosts.map((post) => {
+    return {
+      params: { categoria: slugify(post.data.category) },
+      props: { post },
+    };
+  });
 }) satisfies GetStaticPaths;
 
 const { categoria } = Astro.params;
-const { name } = Astro.props;
+const { post } = Astro.props;
 
 // Filtrar posts draft=true, no futuros y posts correspondientes a cada categoría
 const publishedBlogPosts = await getCollection(
@@ -47,18 +43,30 @@ publishedBlogPosts.sort(
 );
 ---
 
-<MainLayout title={name} description="Categorías de los artículos">
+<MainLayout
+  title={post.data.category}
+  description="Categorías de los artículos"
+>
   <Heading tagType="h1" hClass="h1">
-    {name}
+    {post.data.category}
   </Heading>
   <section class="container mx-auto px-4 sm:px-6">
     <div
-      class="grid items-stretch gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
+      class="grid items-stretch gap-4 sm:grid-cols-1 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
     >
       {
         publishedBlogPosts.map((post) => (
-          <div>
-            <div class="space-y-4 bg-skin-fill-shade p-2 dark:bg-skin-fill-shade-dark sm:p-4 md:p-6 lg:p-8">
+          <div class="relative">
+            <div class="aspect-square">
+              <Image
+                src={post.data.image.src}
+                alt={post.data.image.alt}
+                format="avif"
+                quality={"low"}
+                class="aspect-square object-cover"
+              />
+            </div>
+            <div class="absolute left-[5%] right-[5%] top-1/2 space-y-4 bg-skin-fill-shade p-2 dark:bg-skin-fill-shade-dark sm:p-4 md:p-6 lg:p-8">
               <Heading tagType="h3" hClass="h3">
                 {post.data.title}
               </Heading>
