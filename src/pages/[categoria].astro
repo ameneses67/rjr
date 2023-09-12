@@ -6,9 +6,11 @@ import { getCollection } from "astro:content";
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
 
+// Componentes
+import Heading from "../components/elements/Heading.astro";
+
 // Utilidades
 import { slugify } from "../utils/utils";
-import Heading from "../components/elements/Heading.astro";
 
 export const getStaticPaths = (() => {
   return [
@@ -49,12 +51,22 @@ publishedBlogPosts.sort(
   <Heading tagType="h1" hClass="h1">
     {name}
   </Heading>
-  {
-    publishedBlogPosts.map((post) => (
-      <>
-        <h2>{post.data.title}</h2>
-        <p>{post.data.category}</p>
-      </>
-    ))
-  }
+  <section class="container mx-auto px-4 sm:px-6">
+    <div
+      class="grid items-stretch gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4"
+    >
+      {
+        publishedBlogPosts.map((post) => (
+          <div>
+            <div class="space-y-4 bg-skin-fill-shade p-2 dark:bg-skin-fill-shade-dark sm:p-4 md:p-6 lg:p-8">
+              <Heading tagType="h3" hClass="h3">
+                {post.data.title}
+              </Heading>
+              <p set:html={post.data.snippet.slice(0, 100)} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
 </MainLayout>
