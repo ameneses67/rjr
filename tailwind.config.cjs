@@ -37,6 +37,11 @@ module.exports = {
           "fill-very-dark": "var(--clr-bg-very-dark)",
         },
       },
+      borderColor: {
+        skin: {
+          accent: "var(--clr-accent)",
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],

@@ -45,7 +45,7 @@ const {
   </p>
   <div>
     <div class="relative mx-auto aspect-video max-w-2xl">
-      <a href={slug}>
+      <a href={`${slugify(category)}/${slug}`}>
         <Image
           src={imgSrc}
           alt={imgAlt}
@@ -67,6 +67,8 @@ const {
     <Fragment set:html={snippet} />
   </div>
   <div class="pt-4">
-    <Link href={slug}>Seguir leyendo...</Link>
+    <Link class="min-w-fit" href={`${slugify(category)}/${slug}`}>
+      Seguir leyendo...
+    </Link>
   </div>
 </>
