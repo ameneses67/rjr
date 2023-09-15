@@ -1,0 +1,17 @@
+---
+// Types
+import type { CollectionEntry } from "astro:content";
+
+// Componentes
+import BlogCard from "./BlogCard.astro";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="container mx-auto space-y-12 px-4 sm:space-y-16 sm:px-6">
+  {posts.map((post) => <BlogCard post={post} />)}
+</section>

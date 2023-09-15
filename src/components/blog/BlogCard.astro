@@ -1,4 +1,7 @@
 ---
+// Types
+import type { CollectionEntry } from "astro:content";
+
 // Librerías
 import { Image } from "astro:assets";
 
@@ -7,48 +10,34 @@ import Heading from "../elements/Heading.astro";
 import Link from "../elements/Link.astro";
 
 // Utilidades
-import { getFormattedDate, slugify } from "../../utils/utils";
+import { slugify } from "../../utils/utils";
 
 interface Props {
-  blogTitle: string;
-  updatedDate: Date;
-  author: string;
-  snippet: string;
-  imgSrc: ImageMetadata;
-  imgAlt: string;
-  category: string;
-  slug: string;
+  post: CollectionEntry<"blog">;
 }
 
-const {
-  blogTitle,
-  updatedDate,
-  author,
-  snippet,
-  imgSrc,
-  imgAlt,
-  category,
-  slug,
-} = Astro.props;
+const { post } = Astro.props;
 ---
 
-<>
-  <a href={`${slugify(category)}/${slug}`}>
+<article
+  class="mx-auto max-w-3xl space-y-6 border-b border-slate-200 pb-12 dark:border-slate-800 sm:pb-16"
+>
+  <a href={`${slugify(post.data.category)}/${post.slug}`}>
     <Heading tagType="h2" hClass="h2" classes="text-left">
-      {blogTitle}
+      {post.data.title}
     </Heading>
   </a>
   <p class="text-sm text-slate-400">
-    Por: {author} &bull; Actualizado: <time
-      >{getFormattedDate(updatedDate)}</time
+    Por: {post.data.author} &bull; Actualizado: <time
+      >{post.data.updateDate}</time
     >
   </p>
   <div>
     <div class="relative mx-auto aspect-video max-w-2xl">
-      <a href={`${slugify(category)}/${slug}`}>
+      <a href={`${slugify(post.data.category)}/${post.slug}`}>
         <Image
-          src={imgSrc}
-          alt={imgAlt}
+          src={post.data.image.src}
+          alt={post.data.image.alt}
           width={672}
           format="avif"
           quality="low"
@@ -56,19 +45,22 @@ const {
         />
       </a>
       <Link
-        href={slugify(category)}
+        href={slugify(post.data.category)}
         class="absolute bottom-0 left-0 rounded-lg bg-slate-950 py-1 text-sm capitalize"
       >
-        {category}
+        {post.data.category}
       </Link>
     </div>
   </div>
   <div class="space-y-4">
-    <Fragment set:html={snippet} />
+    <Fragment set:html={post.data.snippet} />
   </div>
   <div class="pt-4">
-    <Link class="min-w-fit" href={`${slugify(category)}/${slug}`}>
+    <Link
+      class="min-w-fit"
+      href={`${slugify(post.data.category)}/${post.slug}`}
+    >
       Seguir leyendo...
     </Link>
   </div>
-</>
+</article>

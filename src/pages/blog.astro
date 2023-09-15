@@ -1,0 +1,58 @@
+---
+// Librerías
+import { getCollection } from "astro:content";
+
+// Layouts
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import BlogHero from "../components/blog/BlogHero.astro";
+import BlogList from "../components/blog/BlogList.astro";
+
+// Filtrar posts draft=true y no futuros
+// const publishedBlogPosts = await getCollection(
+//   "blog",
+//   ({ data }) => !data.draft && data.publishDate < new Date(),
+// );
+
+// Ordenar posts por fecha
+// publishedBlogPosts.sort(
+//   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+// );
+
+const publishedPosts = await getCollection("blog");
+
+// Generar páginas con 5 artículos
+// export const getStaticPaths = (async ({ paginate }) => {
+//   return paginate(publishedBlogPosts, { pageSize: 3 });
+// }) satisfies GetStaticPaths;
+
+// const { page } = Astro.props;
+
+const title = "Blog";
+const description =
+  "En nuestro blog encontrarás artículos básicos que te ayudarán a empezar a educarte en finanzas personales.";
+---
+
+<MainLayout {title} {description}>
+  <BlogHero />
+  <BlogList posts={publishedPosts} />
+  <!-- <aside class="w-full">
+    <div class="container mx-auto flex justify-between px-4 sm:px-6">
+      {
+        page.url.prev ? (
+          <Link href={page.url.prev} style="outline">
+            Recientes
+          </Link>
+        ) : null
+      }
+      {
+        page.url.next ? (
+          <Link href={page.url.next} style="outline">
+            Anteriores
+          </Link>
+        ) : null
+      }
+    </div>
+  </aside> -->
+</MainLayout>

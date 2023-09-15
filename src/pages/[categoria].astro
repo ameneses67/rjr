@@ -4,7 +4,7 @@ import type { GetStaticPaths } from "astro";
 
 // Librerías
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
@@ -24,6 +24,10 @@ export const getStaticPaths = (async () => {
     };
   });
 }) satisfies GetStaticPaths;
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
 
 const { categoria } = Astro.params;
 const { post } = Astro.props;
@@ -52,12 +56,15 @@ publishedBlogPosts.sort(
   </Heading>
   <section class="container mx-auto px-4 sm:px-6">
     <div
-      class="grid items-stretch gap-4 sm:grid-cols-1 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
+      class="grid items-stretch gap-8 sm:grid-cols-1 sm:gap-12 md:grid-cols-2 lg:grid-cols-3"
     >
       {
         publishedBlogPosts.map((post) => (
-          <div class="relative">
-            <div class="aspect-square">
+          <a
+            href={`${slugify(post.data.category)}/${post.slug}`}
+            class="relative"
+          >
+            <div>
               <Image
                 src={post.data.image.src}
                 alt={post.data.image.alt}
@@ -66,13 +73,13 @@ publishedBlogPosts.sort(
                 class="aspect-square object-cover"
               />
             </div>
-            <div class="absolute left-[5%] right-[5%] top-1/2 space-y-4 bg-skin-fill-shade p-2 dark:bg-skin-fill-shade-dark sm:p-4 md:p-6 lg:p-8">
-              <Heading tagType="h3" hClass="h3">
+            <div class="absolute bottom-0 left-0 right-0 bg-skin-fill-shade p-1 text-left text-sm opacity-90 dark:bg-skin-fill-shade-dark sm:p-2">
+              <Heading tagType="h3" hClass="h4" classes="text-left">
                 {post.data.title}
               </Heading>
-              <p set:html={post.data.snippet.slice(0, 100)} />
+              <div class="line-clamp-3" set:html={post.data.snippet} />
             </div>
-          </div>
+          </a>
         ))
       }
     </div>

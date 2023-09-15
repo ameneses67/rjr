@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -5,7 +7,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter Variable", "system-ui", "sans-serif"],
+        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+      },
+      aspectRatio: {
+        "3/2": "3 / 2",
+        "4/3": "4 / 3",
       },
       textColor: {
         skin: {
