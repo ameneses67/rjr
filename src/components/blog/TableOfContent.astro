@@ -1,0 +1,27 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+  headings: MarkdownHeading[];
+  H3: string;
+}
+
+const { headings, H3 } = Astro.props;
+---
+
+<nav>
+  <ul class="space-y-4 border-l border-skin-accent">
+    {
+      headings.map((heading) => (
+        <li
+          class:list={[
+            "pl-4 transition hover:text-skin-base-hvr dark:hover:text-skin-base-dark-hvr",
+            H3,
+          ]}
+        >
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

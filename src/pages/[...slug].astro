@@ -10,6 +10,10 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // Utilidades
 import { slugify } from "../utils/utils";
+import Heading from "../components/elements/Heading.astro";
+import { Image } from "astro:assets";
+import TableOfContent from "../components/blog/TableOfContent.astro";
+import Link from "../components/elements/Link.astro";
 
 // 1. Generate a new path for every collection entry
 export const getStaticPaths = (async () => {
@@ -28,20 +32,44 @@ interface Props {
   entry: CollectionEntry<"blog">;
 }
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+console.log(headings);
 ---
 
 <MainLayout
   title={entry.data.title}
   description={entry.data.snippet.slice(3, 90)}
 >
-  <article class="container prose mx-auto px-4 dark:prose-invert sm:px-6">
-    <h1>{entry.data.title}</h1>
-    <Content />
-  </article>
-  <a
-    href="/blog"
-    class="rounded-md bg-skin-accent px-5 py-3 text-white transition hover:bg-skin-accent-hvr"
-    >← Blog</a
+  <section class="container mx-auto max-w-5xl space-y-6 px-4 sm:px-6">
+    <Heading tagType="h1" hClass="h1" classes="text-left">
+      {entry.data.title}
+    </Heading>
+    <Image
+      src={entry.data.image.src}
+      alt={entry.data.image.alt}
+      format="avif"
+      quality={"low"}
+      class="aspect-video w-full rounded-lg object-cover shadow-lg dark:shadow-slate-50/10"
+    />
+  </section>
+  <section
+    class="container mx-auto space-y-12 px-4 sm:px-6 lg:flex lg:justify-center lg:gap-x-8 lg:space-y-0"
   >
+    <aside>
+      <div class="sticky top-4 space-y-4">
+        <Heading tagType="h3" hClass="h3" classes="text-left">
+          Contenido
+        </Heading>
+        <TableOfContent headings={headings} />
+      </div>
+    </aside>
+    <div>
+      <article class="prose prose-lg prose-slate dark:prose-invert">
+        <Content />
+      </article>
+      <div class="text-center">
+        <Link href="/blog" style={"outline"} class="mx-auto">← Blog</Link>
+      </div>
+    </div>
+  </section>
 </MainLayout>
