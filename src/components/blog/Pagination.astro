@@ -1,0 +1,32 @@
+---
+// Componentes
+import Link from "../elements/Link.astro";
+
+interface Props {
+  prevURL?: string;
+  nextURL?: string;
+}
+
+const { prevURL, nextURL } = Astro.props;
+---
+
+<aside class="container mx-auto flex w-full justify-between px-4 sm:px-6">
+  {
+    prevURL ? (
+      <Link href={prevURL} style="outline">
+        Anterior
+      </Link>
+    ) : (
+      <div />
+    )
+  }
+  {
+    nextURL ? (
+      <Link href={nextURL} style="outline">
+        Siguiente
+      </Link>
+    ) : (
+      <div />
+    )
+  }
+</aside>

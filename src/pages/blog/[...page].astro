@@ -1,20 +1,20 @@
 ---
-// Librerías
-import { getCollection, type CollectionEntry } from "astro:content";
-
 // Types
 import type { GetStaticPaths, Page } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 // Layouts
-import MainLayout from "../layouts/MainLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 // Componentes
-import BlogHero from "../components/blog/BlogHero.astro";
-import BlogList from "../components/blog/BlogList.astro";
+import BlogHero from "../../components/blog/BlogHero.astro";
+import BlogList from "../../components/blog/BlogList.astro";
+import Pagination from "../../components/blog/Pagination.astro";
 
+// Paginación
 export const getStaticPaths = (async ({ paginate }) => {
   // Filtrar posts draft=true y no futuros
-  const publishedBlogPosts: CollectionEntry<"blog">[] = await getCollection(
+  const publishedBlogPosts = await getCollection(
     "blog",
     ({ data }) => !data.draft && data.publishDate < new Date(),
   );
@@ -23,17 +23,15 @@ export const getStaticPaths = (async ({ paginate }) => {
   publishedBlogPosts.sort(
     (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
   );
-
   return paginate(publishedBlogPosts, { pageSize: 3 });
 }) satisfies GetStaticPaths;
 
 interface Props {
-  page: Page<CollectionEntry<"blog">>;
+  page: Page;
 }
 
 const { page } = Astro.props;
-const articulos = page.data;
-console.log(articulos);
+const entries = page.data;
 
 const title = "Blog";
 const description =
@@ -42,5 +40,6 @@ const description =
 
 <MainLayout {title} {description}>
   <BlogHero />
-  <BlogList posts={articulos} />
+  <BlogList posts={entries} />
+  <Pagination prevURL={page.url.prev} nextURL={page.url.next} />
 </MainLayout>

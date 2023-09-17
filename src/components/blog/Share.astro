@@ -1,0 +1,29 @@
+---
+// Librerías
+import { Icon } from "astro-icon";
+import Heading from "../elements/Heading.astro";
+
+const { url, text } = Astro.props;
+---
+
+<div class="flex items-center gap-x-6 pl-4">
+  <a
+    href={`https://twitter.com/intent/tweet?url=https://rjr.pages.dev/${url}&via=retiratejoven&text=${text}&hashtags=retiratejovenyrico%2Cjovenyrico`}
+    target="_blank"
+  >
+    <Icon
+      name="radix-icons:twitter-logo"
+      class="h-9 w-9 text-skin-base dark:text-skin-base-dark"
+    />
+  </a>
+
+  <a
+    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://rjr.pages.dev/${url}`}
+    target="_blank"
+  >
+    <Icon
+      name="jam:linkedin-square"
+      class="h-9 w-9 text-skin-base dark:text-skin-base-dark"
+    />
+  </a>
+</div>

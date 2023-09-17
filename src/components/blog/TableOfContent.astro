@@ -3,10 +3,9 @@ import type { MarkdownHeading } from "astro";
 
 interface Props {
   headings: MarkdownHeading[];
-  H3: string;
 }
 
-const { headings, H3 } = Astro.props;
+const { headings } = Astro.props;
 ---
 
 <nav>
@@ -14,10 +13,9 @@ const { headings, H3 } = Astro.props;
     {
       headings.map((heading) => (
         <li
-          class:list={[
-            "pl-4 transition hover:text-skin-base-hvr dark:hover:text-skin-base-dark-hvr",
-            H3,
-          ]}
+          class={`transition hover:text-skin-base-hvr dark:hover:text-skin-base-dark-hvr ${
+            heading.depth === 3 ? "pl-8" : "pl-4"
+          }`}
         >
           <a href={`#${heading.slug}`}>{heading.text}</a>
         </li>

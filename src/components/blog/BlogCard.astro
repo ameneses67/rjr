@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 
 // Librerías
 import { Image } from "astro:assets";
+import { format } from "date-fns";
 
 // Componentes
 import Heading from "../elements/Heading.astro";
@@ -11,6 +12,7 @@ import Link from "../elements/Link.astro";
 
 // Utilidades
 import { slugify } from "../../utils/utils";
+import { es } from "date-fns/locale";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -29,7 +31,9 @@ const { post } = Astro.props;
   </a>
   <p class="text-sm text-slate-400">
     Por: {post.data.author} &bull; Actualizado: <time
-      >{post.data.updateDate}</time
+      >{
+        format(new Date(post.data.updateDate), "d/MMM/yyyy", { locale: es })
+      }</time
     >
   </p>
   <div>
