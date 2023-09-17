@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ameneses67.github.io",
+  site: "https://rjr.pages.dev",
   trailingSlash: "never",
   build: {
     format: "file",
