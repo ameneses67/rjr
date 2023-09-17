@@ -8,6 +8,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 // Componentes
 import BlogHero from "../components/blog/BlogHero.astro";
 import BlogList from "../components/blog/BlogList.astro";
+import Pagination from "../components/blog/Pagination.astro";
 
 // Filtrar posts draft=true y no futuros
 const publishedBlogPosts: CollectionEntry<"blog">[] = await getCollection(
@@ -28,4 +29,5 @@ const description =
 <MainLayout {title} {description}>
   <BlogHero />
   <BlogList posts={publishedBlogPosts} />
+  <Pagination nextURL="/blog/2" />
 </MainLayout>
