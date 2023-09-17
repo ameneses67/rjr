@@ -31,9 +31,7 @@ const { post } = Astro.props;
   </a>
   <p class="text-sm text-slate-400">
     Por: {post.data.author} &bull; Actualizado: <time
-      >{
-        format(new Date(post.data.updateDate), "d/MMM/yyyy", { locale: es })
-      }</time
+      >{format(new Date(post.data.updateDate), "d/MMM/yyyy")}</time
     >
   </p>
   <div>
