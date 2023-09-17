@@ -24,7 +24,7 @@ const { post } = Astro.props;
 <article
   class="mx-auto max-w-3xl space-y-6 border-b border-slate-200 pb-12 dark:border-slate-800 sm:pb-16"
 >
-  <a href={`${slugify(post.data.category)}/${post.slug}`}>
+  <a href={`${slugify(post.data.category)}/${post.slug}/`}>
     <Heading tagType="h2" hClass="h2" classes="text-left">
       {post.data.title}
     </Heading>
@@ -36,7 +36,7 @@ const { post } = Astro.props;
   </p>
   <div>
     <div class="relative mx-auto aspect-video max-w-2xl">
-      <a href={`${slugify(post.data.category)}/${post.slug}`}>
+      <a href={`${slugify(post.data.category)}/${post.slug}/`}>
         <Image
           src={post.data.image.src}
           alt={post.data.image.alt}
@@ -60,7 +60,7 @@ const { post } = Astro.props;
   <div class="pt-4">
     <Link
       class="min-w-fit"
-      href={`${slugify(post.data.category)}/${post.slug}`}
+      href={`${slugify(post.data.category)}/${post.slug}/`}
     >
       Seguir leyendo...
     </Link>

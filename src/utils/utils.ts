@@ -1,3 +1,5 @@
+import type { string } from "astro/zod";
+
 export const currentYear = new Date().getFullYear();
 
 export const getFormattedDate = (date: Date) =>
@@ -20,4 +22,9 @@ export const slugify = (text: string) => {
     .replace(/^-+/, "")
     .replace(/-+$/, "")
     .replace(/[\u0300-\u036f]/g, "");
+};
+
+export const removeTags = (str: string) => {
+  str = str.toString();
+  return str.replace(/(<([^>]+)>)/gi, "");
 };

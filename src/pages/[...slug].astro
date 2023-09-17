@@ -16,7 +16,7 @@ import Link from "../components/elements/Link.astro";
 import Share from "../components/blog/Share.astro";
 
 // Utilidades
-import { slugify } from "../utils/utils";
+import { slugify, removeTags } from "../utils/utils";
 
 // 1. Generate a new path for every collection entry
 export const getStaticPaths = (async () => {
@@ -24,7 +24,7 @@ export const getStaticPaths = (async () => {
   return blogEntries.map((entry) => {
     const catSlug = slugify(entry.data.category);
     return {
-      params: { slug: `${catSlug}/${entry.slug}` },
+      params: { slug: `${catSlug}/${entry.slug}/` },
       props: { entry },
     };
   });
@@ -40,8 +40,7 @@ const { Content, headings } = await entry.render();
 
 <MainLayout
   title={entry.data.title}
-  description={entry.data.snippet.slice(3, 90)}
-  ,
+  description={removeTags(entry.data.snippet.slice(0, 160))}
   image={entry.data.image.src.src}
 >
   <section class="container mx-auto max-w-5xl space-y-8 px-4 sm:px-6">
