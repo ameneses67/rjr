@@ -1,0 +1,12 @@
+---
+import Heading from "../components/elements/Heading.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+const title = "Página no encontrada";
+const description =
+  "Algo salió mal y no pudimos encontrar la página que buscabas.";
+---
+
+<MainLayout {title} {description}>
+  <Heading tagType="h1" hClass="h1">¡Chin...! Algo salió mal</Heading>
+</MainLayout>

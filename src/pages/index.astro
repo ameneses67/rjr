@@ -1,16 +1,15 @@
 ---
+// Librerías
+import { Icon } from "astro-icon";
+
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
 
 // Componentes
 import Hero from "../components/hero/Hero.astro";
 import Testimonials from "../components/Testimonials.astro";
-import Main from "../components/elements/Main.astro";
-import Header from "../components/header/Header.astro";
-import Footer from "../components/Footer.astro";
-import { Icon } from "astro-icon";
 
-const title = "Inicio";
+const title = "Inico";
 const description =
   "¡Edúcate! Te enseñamos finanzas personales para ayudarte a tomar el control de tu destino financiero y llevar el estilo de vida que simpre has deseado.";
 ---
@@ -18,5 +17,5 @@ const description =
 <MainLayout {title} {description}>
   <Hero />
   <Testimonials />
-  <Icon name="wave" class="text-skin-accent mx-auto w-32" />
+  <Icon name="wave" class="mx-auto w-32 text-skin-accent" />
 </MainLayout>
