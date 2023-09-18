@@ -23,7 +23,7 @@ export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => {
     return {
-      params: { slug: `${slugify(entry.data.category)}/${entry.slug}` },
+      params: { postSlug: `${slugify(entry.data.category)}/${entry.slug}` },
       props: { entry },
     };
   });
@@ -54,7 +54,7 @@ const { Content, headings } = await entry.render();
       class="aspect-video w-full rounded-lg object-cover shadow-lg dark:shadow-slate-50/10"
     />
     <Share
-      url={`/${slugify(entry.data.category)}/${entry.slug}/`}
+      url={`${slugify(entry.data.category)}/${entry.slug}/`}
       text={entry.data.title}
     />
   </section>

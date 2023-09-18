@@ -19,7 +19,7 @@ export const getStaticPaths = (async () => {
   const allPosts = await getCollection("blog");
   return allPosts.map((post) => {
     return {
-      params: { categoria: slugify(post.data.category) },
+      params: { catSlug: slugify(post.data.category) },
       props: { post },
     };
   });
@@ -29,7 +29,7 @@ interface Props {
   post: CollectionEntry<"blog">;
 }
 
-const { categoria } = Astro.params;
+const { catSlug } = Astro.params;
 const { post } = Astro.props;
 
 // Filtrar posts draft=true, no futuros y posts correspondientes a cada categoría
@@ -38,12 +38,12 @@ const publishedBlogPosts = await getCollection(
   ({ data }) =>
     !data.draft &&
     data.publishDate < new Date() &&
-    slugify(data.category) === categoria,
+    slugify(data.category) === catSlug,
 );
 
 // Ordenar posts por fecha
 publishedBlogPosts.sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+  (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
 );
 ---
 
