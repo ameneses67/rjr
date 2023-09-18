@@ -14,7 +14,7 @@ import Pagination from "../../components/blog/Pagination.astro";
 // Paginación
 export const getStaticPaths = (async ({ paginate }) => {
   // Filtrar posts draft=true y no futuros
-  const publishedBlogPosts = await getCollection(
+  const publishedBlogPosts: CollectionEntry<"blog">[] = await getCollection(
     "blog",
     ({ data }) => !data.draft && data.publishDate < new Date(),
   );
@@ -23,6 +23,8 @@ export const getStaticPaths = (async ({ paginate }) => {
   publishedBlogPosts.sort(
     (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
   );
+
+  // Artículos por página
   return paginate(publishedBlogPosts, { pageSize: 3 });
 }) satisfies GetStaticPaths;
 
@@ -31,7 +33,7 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const entries = page.data;
+const entries: CollectionEntry<"blog">[] = page.data;
 
 const title = "Blog";
 const description =

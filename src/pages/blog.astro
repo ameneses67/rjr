@@ -28,6 +28,6 @@ const description =
 
 <MainLayout {title} {description}>
   <BlogHero />
-  <BlogList posts={publishedBlogPosts} />
+  <BlogList posts={publishedBlogPosts.slice(0, 3)} />
   <Pagination nextURL="/blog/2" />
 </MainLayout>

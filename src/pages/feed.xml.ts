@@ -19,7 +19,7 @@ export async function GET(context: APIContext) {
     items: blog.map((post) => ({
       title: post.data.title,
       pubDate: post.data.publishDate,
-      description: removeTags(post.data.snippet),
+      description: post.data.snippet,
       customData: post.data.category,
       // Compute RSS link from post `slug`
       // This example assumes all posts are rendered as `/blog/[slug]` routes

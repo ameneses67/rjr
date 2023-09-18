@@ -22,9 +22,8 @@ import { slugify, removeTags } from "../utils/utils";
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => {
-    const catSlug = slugify(entry.data.category);
     return {
-      params: { slug: `${catSlug}/${entry.slug}/` },
+      params: { slug: `${slugify(entry.data.category)}/${entry.slug}` },
       props: { entry },
     };
   });
@@ -55,7 +54,7 @@ const { Content, headings } = await entry.render();
       class="aspect-video w-full rounded-lg object-cover shadow-lg dark:shadow-slate-50/10"
     />
     <Share
-      url={`${slugify(entry.data.category)}/${entry.slug}`}
+      url={`/${slugify(entry.data.category)}/${entry.slug}/`}
       text={entry.data.title}
     />
   </section>
@@ -65,7 +64,7 @@ const { Content, headings } = await entry.render();
     <aside>
       <div class="sticky top-4 max-w-xs space-y-4">
         <Heading tagType="h3" hClass="h3" classes="text-left">
-          Contenido
+          En esta página
         </Heading>
         <TableOfContent headings={headings} />
       </div>

@@ -6,10 +6,6 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://rjr.pages.dev",
-  trailingSlash: "never",
-  build: {
-    format: "file",
-  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

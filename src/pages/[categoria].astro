@@ -60,10 +60,7 @@ publishedBlogPosts.sort(
     >
       {
         publishedBlogPosts.map((post) => (
-          <a
-            href={`${slugify(post.data.category)}/${post.slug}`}
-            class="relative"
-          >
+          <a href={post.slug} class="relative">
             <div>
               <Image
                 src={post.data.image.src}
