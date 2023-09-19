@@ -17,6 +17,7 @@ import Share from "../components/blog/Share.astro";
 
 // Utilidades
 import { slugify, removeTags } from "../utils/utils";
+import Button from "../components/elements/Button.astro";
 
 // 1. Generate a new path for every collection entry
 export const getStaticPaths = (async () => {
@@ -70,11 +71,13 @@ const { Content, headings } = await entry.render();
       </div>
     </aside>
     <div class="space-y-16">
-      <article class="prose prose-lg prose-slate dark:prose-invert">
+      <article
+        class="prose prose-lg prose-slate dark:prose-invert prose-h2:scroll-mt-4 prose-h3:scroll-mt-4 prose-h4:scroll-mt-4"
+      >
         <Content />
       </article>
       <div class="text-center">
-        <Link href="/blog" style={"outline"} class="mx-auto">← Blog</Link>
+        <Button onclick="history.back()" style="outline">← Atrás</Button>
       </div>
     </div>
   </section>

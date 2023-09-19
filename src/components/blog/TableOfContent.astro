@@ -9,12 +9,16 @@ const { headings } = Astro.props;
 ---
 
 <nav>
-  <ul class="space-y-4 border-l border-skin-accent">
+  <ul>
     {
       headings.map((heading) => (
         <li
-          class={`transition hover:text-skin-base-hvr dark:hover:text-skin-base-dark-hvr ${
-            heading.depth === 3 ? "pl-8" : "pl-4"
+          class={`border-l-4 border-indigo-100 py-1 transition hover:border-skin-accent hover:text-skin-base-hvr hover:underline dark:hover:text-skin-base-dark-hvr ${
+            heading.depth === 3
+              ? "pl-8"
+              : heading.depth === 4
+              ? "pl-12"
+              : "pl-4"
           }`}
         >
           <a href={`#${heading.slug}`}>{heading.text}</a>
@@ -23,3 +27,27 @@ const { headings } = Astro.props;
     }
   </ul>
 </nav>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        if (entry.intersectionRatio > 0) {
+          document
+            .querySelector(`nav li a[href="#${id}"]`)
+            .parentElement.classList.add("bg-indigo-100");
+        } else {
+          document
+            .querySelector(`nav li a[href="#${id}"]`)
+            .parentElement.classList.remove("bg-indigo-100");
+        }
+      });
+    });
+
+    // Track all sections that have an `id` applied
+    document.querySelectorAll("h2[id], h3[id], h4[id]").forEach((h) => {
+      observer.observe(h);
+    });
+  });
+</script>

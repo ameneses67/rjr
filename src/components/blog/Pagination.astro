@@ -10,7 +10,7 @@ interface Props {
 const { prevURL, nextURL } = Astro.props;
 ---
 
-<aside class="container mx-auto flex w-full justify-between px-4 sm:px-6">
+<aside class="mx-auto flex w-full max-w-3xl justify-between">
   {
     prevURL ? (
       <Link href={prevURL} style="outline">
