@@ -23,19 +23,19 @@ const testimoniosInicio = testimonios.filter(
   </Heading>
   {
     testimoniosInicio.map((testimonio) => (
-      <div class="relative mb-24 flex flex-col items-center gap-8 rounded-lg border border-slate-200 px-4 pb-8 text-center last:mb-0 dark:border-slate-800 sm:mb-48 sm:px-12">
+      <div class="border-skin-base dark:border-skin-base-dark relative mb-24 flex flex-col items-center gap-8 rounded-lg border px-4 pb-8 text-center last:mb-0 sm:mb-48 sm:px-12">
         <Image
           src={testimonio.foto.src}
           alt={testimonio.foto.alt}
           format="avif"
           quality="mid"
-          class="absolute h-24 w-24 -translate-y-1/2 rounded-full border border-slate-200 object-cover dark:border-slate-800 sm:h-48 sm:w-48"
+          class="border-skin-base dark:border-skin-base-dark absolute h-24 w-24 -translate-y-1/2 rounded-full border object-cover sm:h-48 sm:w-48"
         />
         <p class="mt-20 max-w-xl font-sans text-2xl sm:mt-32 sm:text-3xl">
           {testimonio.descripcion}
         </p>
         <p>
-          <span class="text-skin-accent font-bold">{testimonio.nombre}</span> ∙
+          <span class="font-bold text-skin-accent">{testimonio.nombre}</span> ∙
           {testimonio.ocupacion}
         </p>
       </div>

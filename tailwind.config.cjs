@@ -32,6 +32,7 @@ module.exports = {
           "fill-dark": "var(--clr-bg-dark)",
           "fill-shade-dark": "var(--clr-bg-shade-dark)",
           accent: "var(--clr-accent)",
+          "accent-shade": "var(--clr-accent-shade)",
           "accent-hvr": "var(--clr-accent-hvr)",
         },
       },
@@ -45,7 +46,12 @@ module.exports = {
       },
       borderColor: {
         skin: {
+          base: "var(--clr-brdr-base)",
+          "base-shade": "var(--clr-brdr-base-shade)",
+          "base-dark": "var(--clr-brdr-base-dark)",
+          "base-shade-dark": "var(--clr-brdr-base-shade-dark)",
           accent: "var(--clr-accent)",
+          "accent-shade": "var(--clr-accent-shade)",
         },
       },
     },
