@@ -15,16 +15,18 @@ const description =
 
 <MainLayout {title} {description}>
   <BoletinHero />
-  <Heading tagType="h2" hClass="h1" classes="max-w-4xl">
-    Unete a los cientos de personas que reciben tips financieros semanalmente en
-    su correo
-  </Heading>
-  <div
-    class="max-w-md border border-skin-base p-12 text-center text-2xl leading-relaxed dark:border-skin-base-dark"
-  >
-    <p>
-      ¡Toma el control de tu dinero! No dejes que el dinero te controle a tí.
-    </p>
-  </div>
+  <section class="space-y-16 px-4 sm:px-6">
+    <Heading tagType="h2" hClass="h1" classes="max-w-4xl">
+      Unete a los cientos de personas que reciben tips financieros semanalmente
+      en su correo
+    </Heading>
+    <div
+      class="mx-auto max-w-md border border-skin-base p-6 text-center text-2xl leading-relaxed dark:border-skin-base-dark sm:p-12"
+    >
+      <p>
+        ¡Toma el control de tu dinero! No dejes que el dinero te controle a tí.
+      </p>
+    </div>
+  </section>
   <FormBoletin text="Pruébalo" />
 </MainLayout>
