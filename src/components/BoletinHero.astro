@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "assets/hero.png";
+import Link from "../components/elements/Link.astro";
+import { Icon } from "astro-icon";
+import SectionHead from "./SectionHead.astro";
+import FormBoletin from "./forms/FormBoletin.astro";
+---
+
+<section
+  class="container mx-auto grid place-items-center gap-8 px-4 sm:px-6 lg:grid-cols-2"
+>
+  <div class="hidden w-full max-w-2xl py-6 md:order-1 md:block">
+    <Icon name="new-message" />
+  </div>
+  <div class="space-y-8">
+    <SectionHead tagType="h1" hClass="h1" align="text-left">
+      <Fragment slot="title">
+        Tips financieros probados directo a tu correo
+      </Fragment>
+      <Fragment slot="desc">
+        Accede a tips exclusivos, aumenta tus ingresos y estrategias de
+        inversión que no comparto en otro lado.
+      </Fragment>
+    </SectionHead>
+    <FormBoletin text="Pruébalo" />
+  </div>
+</section>

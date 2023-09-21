@@ -7,7 +7,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // Componentes
 import ContactForm from "../components/forms/ContactForm.astro";
-import SectionHead from "../components/elements/SectionHead.astro";
+import SectionHead from "../components/SectionHead.astro";
 import Heading from "../components/elements/Heading.astro";
 
 const title = "Contacto";
@@ -16,7 +16,7 @@ const description =
 ---
 
 <MainLayout {title} {description}>
-  <SectionHead>
+  <SectionHead tagType="h1" hClass="h1">
     <Fragment slot="title">{title}</Fragment>
     <Fragment slot="desc">
       Estamos aquí para contestar cualquier pregunta que puedas tener.

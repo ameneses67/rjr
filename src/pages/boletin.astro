@@ -1,6 +1,10 @@
 ---
-import Header from "../components/header/Header.astro";
+// Layouts
 import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import BoletinHero from "../components/BoletinHero.astro";
+import Features from "../components/features/Features.astro";
 
 const title = "Boletín Informativo";
 const description =
@@ -8,5 +12,6 @@ const description =
 ---
 
 <MainLayout {title} {description}>
-  <h1 class="text-4xl font-bold text-skin-accent">Boletín informativo</h1>
+  <BoletinHero />
+  <Features />
 </MainLayout>
