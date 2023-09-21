@@ -1,0 +1,147 @@
+---
+import Button from "../elements/Button.astro";
+---
+
+<!-- To make this contact form work, create your free access key from https://web3forms.com/
+Then you will get all form submissions in your email inbox. -->
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="form"
+  class="needs-validation space-y-5"
+  novalidate
+>
+  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+  <!-- Create your free access key from https://web3forms.com/ -->
+  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
+  <div>
+    <input
+      type="text"
+      placeholder="Tu nombre"
+      required
+      class="w-full rounded-md border border-skin-base bg-skin-fill-shade px-4 py-3 outline-none ring-gray-100 dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+      name="name"
+    />
+    <div class="empty-feedback invalid-feedback mt-1 text-sm text-red-400">
+      Por favor proporciona tu nombre
+    </div>
+  </div>
+  <div>
+    <label for="email_address" class="sr-only">Email Address</label><input
+      id="email_address"
+      type="email"
+      placeholder="Correo electrónico"
+      name="email"
+      required
+      class="w-full rounded-md border border-skin-base bg-skin-fill-shade px-4 py-3 outline-none ring-gray-100 dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+    />
+    <div class="empty-feedback mt-1 text-sm text-red-400">
+      Por favor proporciona tu correo electrónico
+    </div>
+    <div class="invalid-feedback mt-1 text-sm text-red-400">
+      Por favor proporciona una dirección de correo válida
+    </div>
+  </div>
+  <div>
+    <select
+      name="objetivo"
+      id="objetivo"
+      required
+      class="w-full rounded-md border border-skin-base bg-skin-fill-shade px-4 py-3 outline-none ring-gray-100 dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+    >
+      <option value="">- Selecciona una opción -</option>
+      <option value="comentario">Quiero hacer un comentario</option>
+      <option value="duda">Tengo una duda</option>
+      <option value="proposicion">Tengo una proposición</option>
+      <option value="colaboracion">Quiero colaborar</option>
+      <option value="recomendacion">Tengo una recomendación</option>
+      <option value="error">Quiero notificar un error</option>
+    </select>
+    <div class="empty-feedback invalid-feedback mt-1 text-sm text-red-400">
+      Por favor selecciona una opción
+    </div>
+  </div>
+  <div>
+    <textarea
+      name="message"
+      required
+      placeholder="Tu mensaje"
+      class="h-36 w-full rounded-md border border-skin-base bg-skin-fill-shade px-4 py-3 outline-none ring-gray-100 dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+    ></textarea>
+    <div class="empty-feedback invalid-feedback mt-1 text-sm text-red-400">
+      Por favor escribe tu mensaje
+    </div>
+  </div>
+  <Button type="submit" size="lg" block>Enviar Mensaje</Button>
+  <div id="result"></div>
+</form>
+
+<style>
+  .invalid-feedback,
+  .empty-feedback {
+    display: none;
+  }
+
+  .was-validated :placeholder-shown:invalid ~ .empty-feedback {
+    display: block;
+  }
+
+  .was-validated :not(:placeholder-shown):invalid ~ .invalid-feedback {
+    display: block;
+  }
+
+  .is-invalid,
+  .was-validated :invalid {
+    border-color: #dc3545;
+  }
+</style>
+
+<script is:inline>
+  const form = document.getElementById("form");
+  const result = document.getElementById("result");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.classList.add("was-validated");
+    if (!form.checkValidity()) {
+      form.querySelectorAll(":invalid")[0].focus();
+      return;
+    }
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    result.innerHTML = "Sending...";
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          result.classList.add("text-green-500");
+          result.innerHTML = json.message;
+        } else {
+          console.log(response);
+          result.classList.add("text-red-500");
+          result.innerHTML = json.message;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        result.innerHTML = "Something went wrong!";
+      })
+      .then(function () {
+        form.reset();
+        form.classList.remove("was-validated");
+        setTimeout(() => {
+          result.style.display = "none";
+        }, 5000);
+      });
+  });
+</script>

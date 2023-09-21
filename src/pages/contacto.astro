@@ -1,0 +1,57 @@
+---
+// Librerías
+import { Icon } from "astro-icon";
+
+// Layouts
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import ContactForm from "../components/forms/ContactForm.astro";
+import SectionHead from "../components/elements/SectionHead.astro";
+import Heading from "../components/elements/Heading.astro";
+
+const title = "Contacto";
+const description =
+  "¿Tienes dudas, preguntas o algo que decirnos? Estamos para ayudarte. ¡Ponte en contacto!";
+---
+
+<MainLayout {title} {description}>
+  <SectionHead>
+    <Fragment slot="title">{title}</Fragment>
+    <Fragment slot="desc">
+      Estamos aquí para contestar cualquier pregunta que puedas tener.
+      ¡Esperamos escuchar pronto de ti!
+    </Fragment>
+  </SectionHead>
+  <section class="container mx-auto px-4 sm:px-6">
+    <div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-2">
+      <div class="space-y-6">
+        <Heading tagType="h2" hClass="h3" classes="text-left">
+          Ponte en contacto con Retirate Joven y Rico
+        </Heading>
+        <p class="text-lg leading-relaxed text-slate-500">
+          ¿Tienes dudas, preguntas o algo que decirnos? Estamos para ayudarte.
+          Llena el formulario o envíanos un correo y en breve estaremos de
+          vuelta contigo.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <Icon class="h-4 w-4 text-skin-accent" name="uil:map-marker" />
+            <span>Aldama 128, Coah. 2500</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <Icon class="h-4 w-4 text-skin-accent" name="uil:envelope" /><a
+              href="mailto:hola@retiratejovenyrico.com"
+              >info@retiratejovenyrico.com</a
+            >
+          </div><div class="flex items-center gap-2">
+            <Icon class="h-4 w-4 text-skin-accent" name="uil:whatsapp" /><a
+              href="tel:+52 (844) 122-1756">+52 (844) 122-1756</a
+            >
+          </div>
+        </div>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</MainLayout>
