@@ -23,10 +23,10 @@ const { title, description, image } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="theme-teal scroll-smooth">
+<html lang="es" class="theme-brown scroll-smooth">
   <BaseHead {title} {description} {image} />
   <body
-    class="space-y-8 bg-skin-fill text-skin-base dark:bg-skin-fill-dark dark:text-skin-base-dark sm:space-y-16"
+    class="space-y-8 bg-gradient-to-br from-skin-fill to-skin-fill-shade text-skin-base dark:bg-skin-fill-dark dark:from-skin-fill-dark dark:to-skin-fill-very-dark dark:text-skin-base-dark sm:space-y-16"
   >
     <Header />
     <Main>

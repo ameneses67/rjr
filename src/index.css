@@ -7,125 +7,145 @@
     --clr-accent: #6366f1; /* Indigo 500 */
     --clr-accent-shade: #e0e7ff; /* Indigo 100 */
     --clr-accent-hvr: #4f46e5; /* Indigo 600 */
-    --clr-txt-base: #64748b;
-    --clr-txt-base-hvr: #475569;
-    --clr-txt-base-dark: #94a3b8;
-    --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
-    --clr-hdng-base-dark: #e2e8f0;
-    --clr-bg: #ffffff;
-    --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
-    --clr-brdr-base: #cbd5e1;
-    --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
   }
 
   .theme-sky {
     --clr-accent: #0ea5e9; /* Sky 500 */
     --clr-accent-shade: #e0f2fe; /* Sky 100 */
-    --clr-accent-hvr: #0284c7; /* Sky 600 */
-    --clr-txt-base: #64748b;
-    --clr-txt-base-hvr: #475569;
-    --clr-txt-base-dark: #94a3b8;
-    --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
-    --clr-hdng-base-dark: #e2e8f0;
-    --clr-bg: #ffffff;
-    --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
-    --clr-brdr-base: #cbd5e1;
-    --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
   }
 
   .theme-violet {
     --clr-accent: #8b5cf6; /* Violet 500 */
     --clr-accent-shade: #ede9fe; /* Violet 100 */
     --clr-accent-hvr: #7c3aed; /* Violet 600 */
-    --clr-txt-base: #64748b;
-    --clr-txt-base-hvr: #475569;
-    --clr-txt-base-dark: #94a3b8;
-    --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
-    --clr-hdng-base-dark: #e2e8f0;
-    --clr-bg: #ffffff;
-    --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
-    --clr-brdr-base: #cbd5e1;
-    --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
   }
 
   .theme-emerald {
     --clr-accent: #10b981; /* Emerald 500 */
     --clr-accent-shade: #d1fae5; /* Emerald 100 */
     --clr-accent-hvr: #059669; /* Emerald 600 */
-    --clr-txt-base: #64748b;
-    --clr-txt-base-hvr: #475569;
-    --clr-txt-base-dark: #94a3b8;
-    --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
-    --clr-hdng-base-dark: #e2e8f0;
-    --clr-bg: #ffffff;
-    --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
-    --clr-brdr-base: #cbd5e1;
-    --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
   }
 
   .theme-teal {
     --clr-accent: #14b8a6; /* Teal 500 */
     --clr-accent-shade: #ccfbf1; /* Teal 100 */
     --clr-accent-hvr: #0d9488; /* Teal 600 */
-    --clr-txt-base: #64748b;
-    --clr-txt-base-hvr: #475569;
-    --clr-txt-base-dark: #94a3b8;
-    --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
-    --clr-hdng-base-dark: #e2e8f0;
-    --clr-bg: #ffffff;
-    --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
-    --clr-brdr-base: #cbd5e1;
-    --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
   }
 
   .theme-pink {
     --clr-accent: #ec4899; /* Pink 500 */
     --clr-accent-shade: #fce7f3; /* Pink 100 */
     --clr-accent-hvr: #db2777; /* Pink 600 */
+    --clr-txt-base: #64748b; /* 500 - Claro */
+    --clr-txt-base-hvr: #475569; /* 600 - Claro */
+    --clr-txt-base-dark: #94a3b8; /* 400 - Oscuro */
+    --clr-txt-base-dark-hvr: #cbd5e1; /* 300 - Oscuro */
+    --clr-hdng-base: #1e293b; /* 800 - Claro */
+    --clr-hdng-base-dark: #e2e8f0; /* 200 - Oscuro */
+    --clr-bg: #ffffff; /* 000 - Claro */
+    --clr-bg-dark: #0f172a; /* 900 - Oscuro */
+    --clr-bg-very-dark: #020617; /* 950 - Oscuro */
+    --clr-bg-shade: #f8fafc; /* 050 - Claro */
+    --clr-bg-shade-dark: #1e293b; /* 800 - Oscuro */
+    --clr-brdr-base: #cbd5e1; /* 300 - Claro */
+    --clr-brdr-base-dark: #334155; /* 700 - Oscuro */
+    --clr-brdr-base-shade: #e2e8f0; /* 200 - Claro */
+    --clr-brdr-base-shade-dark: #1e293b; /* 800 - Oscuro */
+  }
+
+  .theme-brown {
+    --clr-accent: #cd1818;
+    --clr-accent-shade: #d19696;
+    --clr-accent-hvr: #cc0505;
     --clr-txt-base: #64748b;
     --clr-txt-base-hvr: #475569;
     --clr-txt-base-dark: #94a3b8;
     --clr-txt-base-dark-hvr: #cbd5e1;
-    --clr-hdng-base: #1e293b;
+    --clr-hdng-base: #321e1e;
     --clr-hdng-base-dark: #e2e8f0;
     --clr-bg: #ffffff;
     --clr-bg-shade: #f8fafc;
-    --clr-bg-dark: #0f172a;
-    --clr-bg-shade-dark: #1e293b;
-    --clr-bg-very-dark: #020617;
+    --clr-bg-dark: #321e1e;
+    --clr-bg-shade-dark: #4e3636;
+    --clr-bg-very-dark: #1f1212;
     --clr-brdr-base: #cbd5e1;
     --clr-brdr-base-shade: #e2e8f0;
-    --clr-brdr-base-dark: #334155;
-    --clr-brdr-base-shade-dark: #1e293b;
+    --clr-brdr-base-dark: #4e3636;
+    --clr-brdr-base-shade-dark: #321e1e;
   }
 }

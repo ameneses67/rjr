@@ -22,7 +22,7 @@ const { post } = Astro.props;
 ---
 
 <article
-  class="border-skin-base-shade dark:border-skin-base-shade-dark mx-auto max-w-3xl space-y-6 border-b pb-12 sm:pb-16"
+  class="mx-auto max-w-3xl space-y-6 border-b border-skin-base-shade pb-12 dark:border-skin-base-shade-dark sm:pb-16"
 >
   <a href={`/${slugify(post.data.category)}/${post.slug}/`}>
     <Heading tagType="h2" hClass="h2" classes="text-left">
@@ -48,7 +48,7 @@ const { post } = Astro.props;
       </a>
       <Link
         href={`/${slugify(post.data.category)}/`}
-        class="absolute bottom-0 left-0 rounded-lg bg-slate-950 py-1 text-sm capitalize"
+        class="bg-skin-fill-very-dark absolute bottom-0 left-0 rounded-bl-lg rounded-br-none rounded-tl-none rounded-tr-lg py-1 text-sm capitalize"
       >
         {post.data.category}
       </Link>

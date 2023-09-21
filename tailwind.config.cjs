@@ -32,6 +32,7 @@ module.exports = {
           "fill-shade": "var(--clr-bg-shade)",
           "fill-dark": "var(--clr-bg-dark)",
           "fill-shade-dark": "var(--clr-bg-shade-dark)",
+          "fill-very-dark": "var(--clr-bg-very-dark)",
           accent: "var(--clr-accent)",
           "accent-shade": "var(--clr-accent-shade)",
           "accent-hvr": "var(--clr-accent-hvr)",
