@@ -1,0 +1,18 @@
+---
+import MainLayout from "./MainLayout.astro";
+
+interface Frontmatter {
+  title: string;
+  description: string;
+}
+
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout title={frontmatter.titulo} description={frontmatter.descripcion}>
+  <article
+    class="prose prose-lg prose-slate mx-auto dark:prose-invert prose-a:text-skin-accent prose-a:no-underline prose-a:hover:underline prose-li:marker:text-skin-accent"
+  >
+    <slot />
+  </article>
+</MainLayout>

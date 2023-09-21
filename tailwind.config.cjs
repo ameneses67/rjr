@@ -22,6 +22,7 @@ module.exports = {
           "hdng-base": "var(--clr-hdng-base)",
           "hdng-base-dark": "var(--clr-hdng-base-dark)",
           accent: "var(--clr-accent)",
+          "accent-shade": "var(--clr-accent-shade)",
           "accent-hvr": "var(--clr-accent-hvr)",
         },
       },
