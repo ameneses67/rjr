@@ -10,6 +10,12 @@ import BlogHero from "../components/blog/BlogHero.astro";
 import BlogList from "../components/blog/BlogList.astro";
 import Pagination from "../components/blog/Pagination.astro";
 
+// Definiendo páginas
+const page = Number(Astro.url.searchParams.get("page")) || 1;
+export const postsPerPage = 5;
+const start = postsPerPage * (page - 1);
+const end = start + postsPerPage;
+
 // Filtrar posts draft=true y no futuros
 const publishedBlogPosts: CollectionEntry<"blog">[] = await getCollection(
   "blog",
@@ -21,6 +27,8 @@ publishedBlogPosts.sort(
   (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
 );
 
+const posts = publishedBlogPosts.slice(start, end);
+
 const title = "Blog";
 const description =
   "En nuestro blog encontrarás artículos básicos que te ayudarán a empezar a educarte en finanzas personales.";
@@ -28,6 +36,6 @@ const description =
 
 <MainLayout {title} {description}>
   <BlogHero />
-  <BlogList posts={publishedBlogPosts.slice(0, 3)} />
-  <Pagination nextURL="/blog/2" />
+  <BlogList posts={posts} />
+  <Pagination page={page} numberOfPosts={publishedBlogPosts.length} />
 </MainLayout>

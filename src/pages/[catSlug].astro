@@ -45,6 +45,8 @@ const publishedBlogPosts = await getCollection(
 publishedBlogPosts.sort(
   (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
 );
+
+export const prerender = true;
 ---
 
 <MainLayout

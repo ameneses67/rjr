@@ -2,20 +2,26 @@
 // Componentes
 import Link from "../elements/Link.astro";
 
+// Data
+import { postsPerPage } from "../../pages/blog.astro";
+
 interface Props {
-  prevURL?: string;
-  nextURL?: string;
+  page: number;
+  numberOfPosts: number;
 }
 
-const { prevURL, nextURL } = Astro.props;
+// Definir las páginas
+const { page, numberOfPosts } = Astro.props;
+const hasPreviousPosts = page > 1;
+const hasNextPosts = numberOfPosts > page * postsPerPage;
 ---
 
 <aside
   class="mx-auto flex w-full max-w-3xl justify-between px-4 md:px-6 lg:px-0"
 >
   {
-    prevURL ? (
-      <Link href={prevURL} style="outline">
+    hasPreviousPosts ? (
+      <Link href={`/blog?page=${page - 1}`} style="outline">
         Anterior
       </Link>
     ) : (
@@ -23,8 +29,8 @@ const { prevURL, nextURL } = Astro.props;
     )
   }
   {
-    nextURL ? (
-      <Link href={nextURL} style="outline">
+    hasNextPosts ? (
+      <Link href={`/blog?page=${page + 1}`} style="outline">
         Siguiente
       </Link>
     ) : (
