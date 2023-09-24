@@ -12,15 +12,16 @@ import Pagination from "../components/blog/Pagination.astro";
 
 // Definiendo páginas
 const page = Number(Astro.url.searchParams.get("page")) || 1;
-export const postsPerPage = 5;
+const postsPerPage = Number(import.meta.env.POSTS_PER_PAGE);
 const start = postsPerPage * (page - 1);
 const end = start + postsPerPage;
 
 // Filtrar posts draft=true y no futuros
-const publishedBlogPosts: CollectionEntry<"blog">[] = await getCollection(
-  "blog",
-  ({ data }) => !data.draft && data.publishDate < new Date(),
-);
+export const publishedBlogPosts: CollectionEntry<"blog">[] =
+  await getCollection(
+    "blog",
+    ({ data }) => !data.draft && data.publishDate < new Date(),
+  );
 
 // Ordenar posts por fecha
 publishedBlogPosts.sort(

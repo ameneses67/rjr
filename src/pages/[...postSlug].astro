@@ -1,14 +1,7 @@
 ---
 // Librerías
-import {
-  getCollection,
-  type CollectionEntry,
-  getEntryBySlug,
-} from "astro:content";
+import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
-
-// Types
-import type { GetStaticPaths } from "astro";
 
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
@@ -23,10 +16,13 @@ import Share from "../components/blog/Share.astro";
 import { slugify, removeTags } from "../utils/utils";
 import Button from "../components/elements/Button.astro";
 
-const { slug } = Astro.params;
-const entry = await getEntryBySlug("blog", slug as string);
+const { postSlug } = Astro.params;
+if (postSlug === undefined) {
+  throw new Error("postSlug is required");
+}
 
-if (!entry) {
+const entry = await getEntry("blog", postSlug.split("/").pop() as string);
+if (entry === undefined) {
   return Astro.redirect("/404");
 }
 

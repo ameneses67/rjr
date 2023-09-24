@@ -2,15 +2,13 @@
 // Componentes
 import Link from "../elements/Link.astro";
 
-// Data
-import { postsPerPage } from "../../pages/blog.astro";
-
 interface Props {
   page: number;
   numberOfPosts: number;
 }
 
 // Definir las páginas
+const postsPerPage = Number(import.meta.env.POSTS_PER_PAGE);
 const { page, numberOfPosts } = Astro.props;
 const hasPreviousPosts = page > 1;
 const hasNextPosts = numberOfPosts > page * postsPerPage;

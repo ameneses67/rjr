@@ -12,7 +12,6 @@ import Link from "../elements/Link.astro";
 
 // Utilidades
 import { slugify } from "../../utils/utils";
-import { es } from "date-fns/locale";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -48,7 +47,7 @@ const { post } = Astro.props;
       </a>
       <Link
         href={`/${slugify(post.data.category)}/`}
-        class="bg-skin-fill-very-dark absolute bottom-0 left-0 rounded-bl-lg rounded-br-none rounded-tl-none rounded-tr-lg py-1 text-sm capitalize"
+        class="absolute bottom-0 left-0 rounded-bl-lg rounded-br-none rounded-tl-none rounded-tr-lg bg-skin-fill-very-dark py-1 text-sm capitalize"
       >
         {post.data.category}
       </Link>

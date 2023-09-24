@@ -1,86 +1,33 @@
 ---
-// Types
-import type { GetStaticPaths } from "astro";
-
-// Librerías
-import { Image } from "astro:assets";
-import { getCollection, type CollectionEntry } from "astro:content";
-
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
 
 // Componentes
 import Heading from "../components/elements/Heading.astro";
+import CategoryList from "../components/blog/CategoryList.astro";
 
-// Utilidades
+// Utils
 import { slugify } from "../utils/utils";
 
-export const getStaticPaths = (async () => {
-  const allPosts = await getCollection("blog");
-  return allPosts.map((post) => {
-    return {
-      params: { catSlug: slugify(post.data.category) },
-      props: { post },
-    };
-  });
-}) satisfies GetStaticPaths;
+// Data
+import { publishedBlogPosts } from "./blog.astro";
 
-interface Props {
-  post: CollectionEntry<"blog">;
-}
+const category = Astro.params.catSlug as string;
 
-const { catSlug } = Astro.params;
-const { post } = Astro.props;
-
-// Filtrar posts draft=true, no futuros y posts correspondientes a cada categoría
-const publishedBlogPosts = await getCollection(
-  "blog",
-  ({ data }) =>
-    !data.draft &&
-    data.publishDate < new Date() &&
-    slugify(data.category) === catSlug,
+// Filtrar posts de la categoría correspondiente
+const catPosts = publishedBlogPosts.filter(
+  (post) => slugify(post.data.category) === category,
 );
 
-// Ordenar posts por fecha
-publishedBlogPosts.sort(
+// Ordenar posts por fecha descendente
+catPosts.sort(
   (a, b) => b.data.updateDate.valueOf() - a.data.updateDate.valueOf(),
 );
-
-export const prerender = true;
 ---
 
-<MainLayout
-  title={post.data.category}
-  description="Categorías de los artículos"
->
-  <Heading tagType="h1" hClass="h1">
-    {post.data.category}
-  </Heading>
+<MainLayout title={category} description="Categorías de los artículos">
+  <Heading tagType="h1" hClass="h1">{category}</Heading>
   <section class="container mx-auto px-4 sm:px-6">
-    <div
-      class="grid items-stretch gap-8 sm:grid-cols-1 sm:gap-12 md:grid-cols-2 lg:grid-cols-3"
-    >
-      {
-        publishedBlogPosts.map((post) => (
-          <a href={post.slug} class="relative">
-            <div>
-              <Image
-                src={post.data.image.src}
-                alt={post.data.image.alt}
-                format="avif"
-                quality={"low"}
-                class="aspect-square object-cover"
-              />
-            </div>
-            <div class="absolute bottom-0 left-0 right-0 bg-skin-fill-shade p-1 text-left text-sm opacity-90 dark:bg-skin-fill-shade-dark sm:p-2">
-              <Heading tagType="h3" hClass="h4" classes="text-left">
-                {post.data.title}
-              </Heading>
-              <div class="line-clamp-3" set:html={post.data.snippet} />
-            </div>
-          </a>
-        ))
-      }
-    </div>
+    <CategoryList posts={catPosts} />
   </section>
 </MainLayout>

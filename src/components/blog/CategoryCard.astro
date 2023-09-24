@@ -1,0 +1,36 @@
+---
+// Types
+import type { CollectionEntry } from "astro:content";
+
+// Librerías
+import { Image } from "astro:assets";
+
+// Componentes
+import Heading from "../elements/Heading.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+---
+
+<a href={post.slug} class="relative">
+  <div>
+    <Image
+      src={post.data.image.src}
+      alt={post.data.image.alt}
+      format="avif"
+      quality={"low"}
+      class="aspect-square object-cover"
+    />
+  </div>
+  <div
+    class="absolute bottom-0 left-0 right-0 bg-skin-fill-shade p-1 text-left text-sm opacity-90 dark:bg-skin-fill-shade-dark sm:p-2"
+  >
+    <Heading tagType="h3" hClass="h4" classes="text-left">
+      {post.data.title}
+    </Heading>
+    <div class="line-clamp-3" set:html={post.data.snippet} />
+  </div>
+</a>
