@@ -26,6 +26,9 @@ dependencies:
   '@types/sanitize-html':
     specifier: ^2.9.0
     version: 2.9.0
+  '@xata.io/client':
+    specifier: ^0.26.6
+    version: 0.26.6(typescript@5.2.2)
   astro:
     specifier: ^3.0.3
     version: 3.0.3
@@ -1099,6 +1102,14 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@xata.io/client@0.26.6(typescript@5.2.2):
+    resolution: {integrity: sha512-6YMAOSTGGO4Mwh/J8357l0jSssp3SXwyEPJu1gMr051GB/oV/l2/RAwLNwKyIhHivfvCfAmvUWXNt2j1PthglA==}
+    peerDependencies:
+      typescript: '>=4.5'
+    dependencies:
+      typescript: 5.2.2
     dev: false
 
   /abbrev@1.1.1:
@@ -4372,6 +4383,12 @@ packages:
   /type-fest@2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
+    dev: false
+
+  /typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
     dev: false
 
   /uc.micro@1.0.6:

@@ -1,0 +1,19 @@
+{
+  "id": "mig_ck900ip4k4b103krfg7g",
+  "parentID": "mig_ck900694k4b103krfg30",
+  "checksum": "1:a735c9e089b6869297a76107eb364bcb9a84dfa576a1b0e4879742f075c25dab",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "user",
+          "type": "link",
+          "link": {
+            "table": "users"
+          }
+        },
+        "table": "comments"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://ameneses67-s-workspace-cge9n8.us-east-1.xata.sh/db/retirate-joven-y-rico",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

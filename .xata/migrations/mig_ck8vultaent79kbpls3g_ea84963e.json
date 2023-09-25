@@ -1,0 +1,17 @@
+{
+  "id": "mig_ck8vultaent79kbpls3g",
+  "parentID": "mig_ck8vu3h4k4b103krffvg",
+  "checksum": "1:ea84963e04ad68f4d267f61acecb995e58caa6c8e779d37db96c94d7078d2cbf",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "email",
+          "type": "email",
+          "unique": true
+        },
+        "table": "users"
+      }
+    }
+  ]
+}

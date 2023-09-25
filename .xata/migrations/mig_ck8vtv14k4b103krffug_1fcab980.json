@@ -1,0 +1,18 @@
+{
+  "id": "mig_ck8vtv14k4b103krffug",
+  "parentID": "mig_ck8vs4taent79kbpls2g",
+  "checksum": "1:1fcab9801a40a8302f26c6897278093034df88ffa68a1a495a2cdf7fd30e30de",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "name",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": ""
+        },
+        "table": "users"
+      }
+    }
+  ]
+}

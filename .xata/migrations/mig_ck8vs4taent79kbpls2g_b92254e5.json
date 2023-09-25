@@ -1,0 +1,11 @@
+{
+  "id": "mig_ck8vs4taent79kbpls2g",
+  "checksum": "1:b92254e5719bf8ac56e2be0f7e210950e5731586a8495eed6c548cd3c6ebf22d",
+  "operations": [
+    {
+      "addTable": {
+        "table": "users"
+      }
+    }
+  ]
+}
