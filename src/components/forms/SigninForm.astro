@@ -16,16 +16,6 @@ const { classes, text } = Astro.props;
 <section class={twMerge(classes)}>
   <form class="mx-auto max-w-xl space-y-4">
     <div class="space-y-1">
-      <label for="name" class="ml-1 text-lg font-semibold">Nombre:</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Tu nombre"
-        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
-      />
-    </div>
-    <div class="space-y-1">
       <label for="email" class="ml-1 text-lg font-semibold"
         >Correo electrónico:</label
       >
@@ -56,11 +46,11 @@ const { classes, text } = Astro.props;
     >
   </form>
   <p class="mx-auto mt-8 max-w-xl">
-    ¿Ya tienes una cuenta? <a
-      href="/iniciar-sesion"
+    ¿No tienes una cuenta todavía? <a
+      href="/crear-cuenta"
       class="font-semibold underline"
     >
-      Inicia sesión</a
+      Crea una</a
     >
   </p>
 </section>

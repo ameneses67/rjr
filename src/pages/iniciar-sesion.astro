@@ -1,0 +1,22 @@
+---
+// Layout
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import SigninForm from "../components/forms/SigninForm.astro";
+import SectionHead from "../components/SectionHead.astro";
+
+const title = "Iniciar Sesión";
+const description =
+  "Inicia sesión para poder dejar comentarios y estar en contacto via correo electrónico.";
+---
+
+<MainLayout {title} {description}>
+  <section class="container mx-auto space-y-16 px-4 sm:px-8">
+    <SectionHead tagType="h1" hClass="h1">
+      <Fragment slot="title">Iniciar sesión</Fragment>
+      <Fragment slot="desc">Llena el formulario para iniciar sesión</Fragment>
+    </SectionHead>
+    <SigninForm text="Iniciar Sesión" />
+  </section>
+</MainLayout>
