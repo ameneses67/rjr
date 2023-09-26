@@ -1,0 +1,66 @@
+---
+// Librerías
+import { twMerge } from "tailwind-merge";
+
+// Componentes
+import Link from "../elements/Link.astro";
+
+interface Props {
+  text: string;
+  classes?: string;
+}
+
+const { classes, text } = Astro.props;
+---
+
+<section class={twMerge(classes)}>
+  <form class="mx-auto max-w-xl space-y-4">
+    <div class="space-y-1">
+      <label for="name" class="ml-1 text-lg font-semibold">Nombre:</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Tu nombre"
+        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
+      />
+    </div>
+    <div class="space-y-1">
+      <label for="email" class="ml-1 text-lg font-semibold"
+        >Correo electrónico:</label
+      >
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Tu correo electrónico"
+        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
+      />
+    </div>
+    <div class="space-y-1">
+      <label for="password" class="ml-1 text-lg font-semibold"
+        >Contraseña:</label
+      >
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Elige tu contraseña"
+        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
+      />
+    </div>
+    <button
+      type="submit"
+      class="w-full rounded-lg bg-skin-accent px-12 py-4 text-lg font-bold tracking-wider text-white transition hover:bg-skin-accent-hvr sm:w-1/2"
+      >{text}</button
+    >
+    <p>
+      ¿Ya tienes una cuenta? <a
+        href="/iniciar-sesion"
+        class="font-semibold underline"
+      >
+        Inicia sesión</a
+      >
+    </p>
+  </form>
+</section>

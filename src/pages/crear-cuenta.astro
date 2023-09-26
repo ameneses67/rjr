@@ -1,0 +1,25 @@
+---
+// Layout
+import MainLayout from "../layouts/MainLayout.astro";
+
+// Componentes
+import Heading from "../components/elements/Heading.astro";
+import SignupForm from "../components/forms/SignupForm.astro";
+import SectionHead from "../components/SectionHead.astro";
+
+const title = "Crear Cuenta";
+const description =
+  "Suscríbete y crea tu cuenta para poder dejar comentarios y estar en contacto via correo electrónico.";
+---
+
+<MainLayout {title} {description}>
+  <section class="container mx-auto space-y-16 px-4 sm:px-8">
+    <SectionHead tagType="h1" hClass="h1">
+      <Fragment slot="title">Crear cuenta</Fragment>
+      <Fragment slot="desc">
+        Llena el formulario para crear una cuenta. ¡Es gratis!
+      </Fragment>
+    </SectionHead>
+    <SignupForm text="Crear Cuenta" />
+  </section>
+</MainLayout>
