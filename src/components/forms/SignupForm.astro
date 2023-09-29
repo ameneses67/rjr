@@ -2,65 +2,80 @@
 // Librerías
 import { twMerge } from "tailwind-merge";
 
-// Componentes
-import Link from "../elements/Link.astro";
-
 interface Props {
   text: string;
   classes?: string;
+  errors: { username: string; email: string; password: string };
 }
 
-const { classes, text } = Astro.props;
+const { classes, text, errors } = Astro.props;
 ---
 
 <section class={twMerge(classes)}>
-  <form class="mx-auto max-w-xl space-y-4">
-    <div class="space-y-1">
-      <label for="name" class="ml-1 text-lg font-semibold">Nombre:</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Tu nombre"
-        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
-      />
-    </div>
-    <div class="space-y-1">
-      <label for="email" class="ml-1 text-lg font-semibold"
-        >Correo electrónico:</label
+  <div
+    class="mx-auto max-w-xl space-y-8 rounded-lg border border-skin-base bg-skin-fill-shade p-4 dark:border-skin-base-dark dark:bg-skin-fill-dark sm:p-8"
+  >
+    <form method="POST" class="space-y-4">
+      <div class="space-y-1">
+        <label for="name" class="ml-1 text-lg font-semibold">Nombre:</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Tu nombre"
+          class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
+        />
+        {
+          errors.username && (
+            <p class="text-sm text-skin-accent">{errors.username}</p>
+          )
+        }
+      </div>
+      <div class="space-y-1">
+        <label for="email" class="ml-1 text-lg font-semibold"
+          >Correo electrónico:</label
+        >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Tu correo electrónico"
+          class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
+          pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+        />
+        {errors.email && <p class="text-sm text-skin-accent">{errors.email}</p>}
+      </div>
+      <div class="space-y-1">
+        <label for="password" class="ml-1 text-lg font-semibold"
+          >Contraseña:</label
+        >
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Elige tu contraseña"
+          class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
+          minlength="6"
+        />
+        {
+          errors.password && (
+            <p class="text-sm text-skin-accent">{errors.password}</p>
+          )
+        }
+      </div>
+      <button
+        type="submit"
+        class="w-full rounded-lg bg-skin-accent px-12 py-4 text-lg font-bold tracking-wider text-white transition hover:bg-skin-accent-hvr sm:w-1/2"
+        >{text}</button
       >
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Tu correo electrónico"
-        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
-      />
-    </div>
-    <div class="space-y-1">
-      <label for="password" class="ml-1 text-lg font-semibold"
-        >Contraseña:</label
+    </form>
+    <p>
+      ¿Ya tienes una cuenta? <a
+        href="/iniciar-sesion"
+        class="font-semibold underline"
       >
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Elige tu contraseña"
-        class="-mr-3 w-full rounded-lg border-slate-200 px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-slate-800 dark:bg-skin-fill-shade-dark"
-      />
-    </div>
-    <button
-      type="submit"
-      class="w-full rounded-lg bg-skin-accent px-12 py-4 text-lg font-bold tracking-wider text-white transition hover:bg-skin-accent-hvr sm:w-1/2"
-      >{text}</button
-    >
-  </form>
-  <p class="mx-auto mt-8 max-w-xl">
-    ¿Ya tienes una cuenta? <a
-      href="/iniciar-sesion"
-      class="font-semibold underline"
-    >
-      Inicia sesión</a
-    >
-  </p>
+        Inicia sesión</a
+      >
+    </p>
+  </div>
 </section>

@@ -1,0 +1,38 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { XataClient } from "../xata";
+
+const xata = new XataClient({
+  apiKey: import.meta.env.XATA_API_KEY,
+  branch: import.meta.env.XATA_BRANCH,
+});
+
+const users = await xata.db.users.getAll();
+
+// const user = await xata.db.users.create({
+//   name: "Alfonso",
+//   email: "ameneses67@gmail.com",
+//   password: "123456",
+// });
+---
+
+<MainLayout title="Test" description="Página de prueba">
+  <section class="space-y-4">
+    {!users.length && <p>No hay usuarios todavía</p>}
+    {
+      users.map((user) => (
+        <div>
+          <p class="font-bold">
+            Nombre: <span class="font-light">{user.name}</span>
+          </p>
+          <p class="font-bold">
+            Correo: <span class="font-light">{user.email}</span>
+          </p>
+          <p class="font-bold">
+            Contraseña: <span class="font-light">{user.password}</span>
+          </p>
+        </div>
+      ))
+    }
+  </section>
+</MainLayout>

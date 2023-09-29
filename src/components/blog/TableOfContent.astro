@@ -13,7 +13,7 @@ const { headings } = Astro.props;
     {
       headings.map((heading) => (
         <li
-          class={`border-skin-accent-shade border-l-4 py-1 transition hover:border-skin-accent hover:text-skin-base-hvr hover:underline dark:hover:text-skin-base-dark-hvr ${
+          class={`border-l-4 border-skin-accent-shade py-1 transition hover:border-skin-accent hover:text-skin-base-hvr hover:underline dark:hover:text-skin-base-dark-hvr ${
             heading.depth === 3
               ? "pl-8"
               : heading.depth === 4
@@ -39,6 +39,7 @@ const { headings } = Astro.props;
             .parentElement.classList.add(
               "bg-skin-accent-shade",
               "dark:text-skin-hdng-base",
+              "text-skin-hdng-base",
             );
         } else {
           document
@@ -46,6 +47,7 @@ const { headings } = Astro.props;
             .parentElement.classList.remove(
               "bg-skin-accent-shade",
               "dark:text-skin-hdng-base",
+              "text-skin-hdng-base",
             );
         }
       });

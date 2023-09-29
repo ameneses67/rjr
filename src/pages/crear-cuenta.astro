@@ -1,10 +1,73 @@
 ---
+// Librerías
+import { getXataClient, XataClient } from "../xata";
+import bcrypt from "bcryptjs";
+
 // Layout
 import MainLayout from "../layouts/MainLayout.astro";
 
 // Componentes
 import SignupForm from "../components/forms/SignupForm.astro";
 import SectionHead from "../components/SectionHead.astro";
+
+// Utilidades
+import { isValidEmail, isValidPassword, isRegistered } from "../utils/utils";
+
+// const xata = new XataClient({
+//   apiKey: import.meta.env.XATA_API_KEY,
+//   branch: import.meta.env.XATA_BRANCH,
+// });
+const xata = getXataClient();
+
+const errors = { username: "", email: "", password: "" };
+
+if (Astro.request.method === "POST") {
+  try {
+    const formData = await Astro.request.formData();
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    // Hashing password
+    const salt = bcrypt.genSaltSync(10);
+    const hashPwd = bcrypt.hashSync(password, salt);
+
+    // Validating form data
+    if (typeof name !== "string" || name.length < 1) {
+      errors.username += "Por favor ingresa un nombre de usuario.";
+    }
+    if (typeof email !== "string" || !isValidEmail(email)) {
+      errors.email += "Correo electrónico no válido.";
+    } else if (await isRegistered(email)) {
+      errors.email += "Ya existe una cuenta con este correo electrónico.";
+    }
+    if (typeof password !== "string" || !isValidPassword(password)) {
+      errors.password +=
+        "Tu contraseña debe tener de 6 a 20 caracteres y mínimo un número, una mayúscula y una minúscula.";
+    }
+
+    // Do something with the data
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (!hasErrors) {
+      const user = await xata.db.users.create({
+        name,
+        email,
+        password: hashPwd,
+      });
+      console.log(user);
+
+      Astro.cookies.set("userId", user.id);
+      Astro.cookies.set("userName", user.name);
+      Astro.cookies.set("userEmail", user.email!);
+
+      return Astro.redirect("/iniciar-sesion", 302);
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
 
 const title = "Crear Cuenta";
 const description =
@@ -19,6 +82,6 @@ const description =
         Llena el formulario para crear una cuenta. ¡Es gratis!
       </Fragment>
     </SectionHead>
-    <SignupForm text="Crear Cuenta" />
+    <SignupForm text="Crear Cuenta" errors={errors} />
   </section>
 </MainLayout>
