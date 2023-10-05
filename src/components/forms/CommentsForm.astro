@@ -1,0 +1,38 @@
+---
+import Button from "../elements/Button.astro";
+
+const user = Astro.cookies.get("userId");
+---
+
+{
+  user?.value ? (
+    <form method="POST" class="grid items-end gap-x-3 gap-y-2">
+      <div class="flex flex-col">
+        <label
+          for="comment"
+          class="mb-2 text-2xl text-skin-base dark:text-skin-base-dark"
+        >
+          Deja un comentario
+        </label>
+        <input
+          type="text"
+          name="comment"
+          id="comment"
+          class="rounded-lg border border-skin-base p-6 text-2xl dark:border-skin-base-dark"
+        />
+        <Button>Enviar comentario</Button>
+      </div>
+    </form>
+  ) : (
+    <p class="mb-24 mt-4 text-2xl text-skin-base dark:text-skin-base-dark">
+      Por favor
+      <a
+        href="/iniciar-sesion"
+        class="text-skin-accent underline hover:text-skin-accent-hvr"
+      >
+        inicia sesión
+      </a>
+      para dejar un comentario.
+    </p>
+  )
+}

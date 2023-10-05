@@ -25,11 +25,13 @@ const { classes, text, errors } = Astro.props;
           placeholder="Tu nombre"
           class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
         />
-        {
-          errors.username && (
-            <p class="text-sm text-skin-accent">{errors.username}</p>
-          )
-        }
+        <div class="h-4">
+          {
+            errors.username && (
+              <p class="text-sm text-skin-accent">{errors.username}</p>
+            )
+          }
+        </div>
       </div>
       <div class="space-y-1">
         <label for="email" class="ml-1 text-lg font-semibold"
@@ -43,7 +45,13 @@ const { classes, text, errors } = Astro.props;
           class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
           pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
         />
-        {errors.email && <p class="text-sm text-skin-accent">{errors.email}</p>}
+        <div class="h-4">
+          {
+            errors.email && (
+              <p class="text-sm text-skin-accent">{errors.email}</p>
+            )
+          }
+        </div>
       </div>
       <div class="space-y-1">
         <label for="password" class="ml-1 text-lg font-semibold"
@@ -57,11 +65,13 @@ const { classes, text, errors } = Astro.props;
           class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
           minlength="6"
         />
-        {
-          errors.password && (
-            <p class="text-sm text-skin-accent">{errors.password}</p>
-          )
-        }
+        <div class="h-8">
+          {
+            errors.password && (
+              <p class="text-sm text-skin-accent">{errors.password}</p>
+            )
+          }
+        </div>
       </div>
       <button
         type="submit"

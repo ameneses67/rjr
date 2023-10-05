@@ -15,6 +15,7 @@ import Share from "../components/blog/Share.astro";
 // Utilidades
 import { slugify, removeTags } from "../utils/utils";
 import Button from "../components/elements/Button.astro";
+import CommentsForm from "../components/forms/CommentsForm.astro";
 
 const { postSlug } = Astro.params;
 if (postSlug === undefined) {
@@ -72,4 +73,5 @@ const { Content, headings } = await entry.render();
       </div>
     </div>
   </section>
+  <CommentsForm />
 </MainLayout>

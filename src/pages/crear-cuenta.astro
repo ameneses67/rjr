@@ -13,11 +13,10 @@ import SectionHead from "../components/SectionHead.astro";
 // Utilidades
 import { isValidEmail, isValidPassword, isRegistered } from "../utils/utils";
 
-// const xata = new XataClient({
-//   apiKey: import.meta.env.XATA_API_KEY,
-//   branch: import.meta.env.XATA_BRANCH,
-// });
-const xata = getXataClient();
+const xata = new XataClient({
+  apiKey: import.meta.env.XATA_API_KEY,
+  branch: import.meta.env.XATA_BRANCH,
+});
 
 const errors = { username: "", email: "", password: "" };
 
