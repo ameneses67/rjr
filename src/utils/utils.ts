@@ -1,5 +1,3 @@
-import { getXataClient } from "../xata";
-
 export const currentYear = new Date().getFullYear();
 
 export const getFormattedDate = (date: Date) =>
@@ -38,14 +36,4 @@ export const isValidEmail = (correo: string): boolean => {
 export const isValidPassword = (pwd: string): boolean => {
   const pwdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
   return pwdRegex.test(pwd);
-};
-
-export const isRegistered = async (correo: string) => {
-  const xata = getXataClient();
-
-  const records = await xata.db.users
-    .select(["id", "name", "password", "email"])
-    .getAll();
-
-  return records.filter((record) => record.email === correo) ? true : false;
 };

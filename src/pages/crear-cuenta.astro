@@ -1,6 +1,6 @@
 ---
 // Librerías
-import { getXataClient, XataClient } from "../xata";
+import { XataClient } from "../xata";
 import bcrypt from "bcryptjs";
 
 // Layout
@@ -11,12 +11,17 @@ import SignupForm from "../components/forms/SignupForm.astro";
 import SectionHead from "../components/SectionHead.astro";
 
 // Utilidades
-import { isValidEmail, isValidPassword, isRegistered } from "../utils/utils";
+import { isValidEmail, isValidPassword } from "../utils/utils";
 
 const xata = new XataClient({
   apiKey: import.meta.env.XATA_API_KEY,
   branch: import.meta.env.XATA_BRANCH,
 });
+
+const isRegistered = async (correo: string) => {
+  const records = await xata.db.users.filter("email", correo).getMany();
+  return records.length ? true : false;
+};
 
 const errors = { username: "", email: "", password: "" };
 
@@ -38,7 +43,8 @@ if (Astro.request.method === "POST") {
     if (typeof email !== "string" || !isValidEmail(email)) {
       errors.email += "Correo electrónico no válido.";
     } else if (await isRegistered(email)) {
-      errors.email += "Ya existe una cuenta con este correo electrónico.";
+      errors.email +=
+        "Ya existe una cuenta con este correo electrónico. Inicia sesión.";
     }
     if (typeof password !== "string" || !isValidPassword(password)) {
       errors.password +=
@@ -53,13 +59,21 @@ if (Astro.request.method === "POST") {
         email,
         password: hashPwd,
       });
-      console.log(user);
 
-      Astro.cookies.set("userId", user.id);
-      Astro.cookies.set("userName", user.name);
-      Astro.cookies.set("userEmail", user.email!);
+      Astro.cookies.set("userId", user.id, {
+        httpOnly: true,
+        secure: true,
+      });
+      Astro.cookies.set("userName", user.name, {
+        httpOnly: true,
+        secure: true,
+      });
+      Astro.cookies.set("userEmail", user.email!, {
+        httpOnly: true,
+        secure: true,
+      });
 
-      return Astro.redirect("/iniciar-sesion", 302);
+      return Astro.redirect("/", 302);
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -81,6 +95,6 @@ const description =
         Llena el formulario para crear una cuenta. ¡Es gratis!
       </Fragment>
     </SectionHead>
-    <SignupForm text="Crear Cuenta" errors={errors} />
+    <SignupForm text="Crear Cuenta" {errors} />
   </section>
 </MainLayout>
