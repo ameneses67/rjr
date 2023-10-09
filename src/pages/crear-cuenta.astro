@@ -18,12 +18,12 @@ const xata = new XataClient({
   branch: import.meta.env.XATA_BRANCH,
 });
 
-const isRegistered = async (correo: string) => {
-  const records = await xata.db.users.filter("email", correo).getMany();
-  return records.length ? true : false;
-};
+// const isRegistered = async (correo: string) => {
+//   const records = await xata.db.users.filter("email", correo).getMany();
+//   return records.length ? true : false;
+// };
 
-const errors = { username: "", email: "", password: "" };
+const errors: Record<string, string> = {};
 
 if (Astro.request.method === "POST") {
   try {
@@ -32,23 +32,26 @@ if (Astro.request.method === "POST") {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
+    // User already exists
+    const isRegistered = await xata.db.users.filter("email", email).getFirst();
+
     // Hashing password
     const salt = bcrypt.genSaltSync(10);
     const hashPwd = bcrypt.hashSync(password, salt);
 
     // Validating form data
     if (typeof name !== "string" || name.length < 1) {
-      errors.username += "Por favor ingresa un nombre de usuario.";
+      errors.username = "Por favor ingresa un nombre de usuario.";
     }
     if (typeof email !== "string" || !isValidEmail(email)) {
-      errors.email += "Correo electrónico no válido.";
-    } else if (await isRegistered(email)) {
-      errors.email +=
-        "Ya existe una cuenta con este correo electrónico. Inicia sesión.";
+      errors.email = "Correo electrónico no válido.";
+    } else if (isRegistered) {
+      errors.email =
+        "Ya existe una cuenta con este correo electrónico. Por favor inicia sesión.";
     }
     if (typeof password !== "string" || !isValidPassword(password)) {
-      errors.password +=
-        "Tu contraseña debe tener de 6 a 20 caracteres y mínimo un número, una mayúscula y una minúscula.";
+      errors.password =
+        "Tu contraseña debe tener de 6 a 20 caracteres. Mínimo un número, una mayúscula y una minúscula.";
     }
 
     // Do something with the data

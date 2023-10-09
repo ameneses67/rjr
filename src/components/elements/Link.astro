@@ -1,9 +1,9 @@
 ---
 interface Props {
   href: string;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
   block?: boolean;
-  style?: "outline" | "primary" | "inverted" | "muted";
+  style?: "outline" | "primary" | "inverted" | "muted" | "navbar";
   class?: string;
   [x: string]: any;
 }
@@ -20,6 +20,7 @@ const {
 const sizes = {
   lg: "px-5 py-2.5",
   md: "px-4 py-2",
+  sm: "px-5 md:px-3 py-1.5 text-3xl md:text-sm",
 };
 
 const styles = {
@@ -27,8 +28,11 @@ const styles = {
     "bg-transparent border-2 border-skin-accent text-skin-accent font-semibold hover:text-white hover:bg-skin-accent transition",
   primary:
     "bg-skin-accent text-white hover:bg-skin-accent-hvr hover:shadow-lg  border-2 border-transparent",
-  inverted: "bg-white text-black   border-2 border-transparent",
-  muted: "bg-gray-100 hover:bg-gray-200   border-2 border-transparent",
+  inverted: "bg-skin-fill-shade text-skin-accent border-2 border-transparent",
+  muted:
+    "bg-skin-fill-very-dark hover:bg-gray-200   border-2 border-transparent",
+  navbar:
+    "bg-white text-skin-accent text-3xl md:bg-transparent border-2 border-white md:border-skin-accent md:text-skin-accent font-semibold md:hover:text-white md:hover:bg-skin-accent transition",
 };
 ---
 

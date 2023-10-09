@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   text: string;
   classes?: string;
-  errors: { username: string; email: string; password: string };
+  errors: Record<string, string>;
 }
 
 const { classes, text, errors } = Astro.props;

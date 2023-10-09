@@ -1,38 +1,74 @@
 ---
+// Types
+import type { RecordArray, SelectedPick } from "@xata.io/client";
+import type { CommentsRecord } from "../../xata";
+
+// Componentes
+import CommentList from "../blog/CommentList.astro";
 import Button from "../elements/Button.astro";
 
+interface Props {
+  errors: Record<string, string>;
+}
+
+interface Props {
+  comments: RecordArray<
+    Readonly<
+      SelectedPick<CommentsRecord, ["id" | "comment" | "date" | "user.name"]>
+    >
+  >;
+}
+
 const user = Astro.cookies.get("userId");
+
+const { errors, comments } = Astro.props;
 ---
 
-{
-  user?.value ? (
-    <form method="POST" class="grid items-end gap-x-3 gap-y-2">
-      <div class="flex flex-col">
-        <label
-          for="comment"
-          class="mb-2 text-2xl text-skin-base dark:text-skin-base-dark"
-        >
-          Deja un comentario
-        </label>
-        <input
-          type="text"
-          name="comment"
-          id="comment"
-          class="rounded-lg border border-skin-base p-6 text-2xl dark:border-skin-base-dark"
-        />
-        <Button>Enviar comentario</Button>
-      </div>
-    </form>
-  ) : (
-    <p class="mb-24 mt-4 text-2xl text-skin-base dark:text-skin-base-dark">
-      Por favor
-      <a
-        href="/iniciar-sesion"
-        class="text-skin-accent underline hover:text-skin-accent-hvr"
-      >
-        inicia sesión
-      </a>
-      para dejar un comentario.
-    </p>
-  )
-}
+<section class="bg-skin-fill-shade px-4 dark:bg-skin-fill-shade-dark sm:px-6">
+  <aside class="mx-auto max-w-3xl py-12 sm:py-16 lg:max-w-4xl">
+    <div class="space-y-4">
+      <p class="text-xl">
+        {comments.length}
+        {comments.length === 1 ? " comentario" : " comentarios"}
+      </p>
+      <form method="POST">
+        <div class="flex flex-col gap-4">
+          <textarea
+            name="comment"
+            id="comment"
+            cols="30"
+            rows="5"
+            placeholder="Escribe tu comentario..."
+            class="rounded-lg border border-skin-base dark:border-skin-base-dark"
+          ></textarea>
+          <div class="h-5">
+            {
+              errors.comment && (
+                <p class="text-sm text-red-500">{errors.comment}</p>
+              )
+            }
+          </div>
+          {
+            user?.value ? (
+              <Button class="rounded-lg text-lg font-bold capitalize sm:w-1/2">
+                Enviar comentario
+              </Button>
+            ) : (
+              <p class="mb-24 mt-4 text-lg">
+                Por favor
+                <a
+                  href="/iniciar-sesion"
+                  class="text-skin-accent transition hover:text-skin-accent-hvr"
+                >
+                  inicia sesión
+                </a>
+                para dejar un comentario.
+              </p>
+            )
+          }
+        </div>
+      </form>
+    </div>
+    <CommentList {comments} />
+  </aside>
+</section>

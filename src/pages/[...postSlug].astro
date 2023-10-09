@@ -2,6 +2,7 @@
 // Librerías
 import { getEntry } from "astro:content";
 import { Image } from "astro:assets";
+import { XataClient } from "../xata";
 
 // Layouts
 import MainLayout from "../layouts/MainLayout.astro";
@@ -9,13 +10,12 @@ import MainLayout from "../layouts/MainLayout.astro";
 // Componentes
 import Heading from "../components/elements/Heading.astro";
 import TableOfContent from "../components/blog/TableOfContent.astro";
-import Link from "../components/elements/Link.astro";
 import Share from "../components/blog/Share.astro";
+import CommentsForm from "../components/forms/CommentsForm.astro";
+import Button from "../components/elements/Button.astro";
 
 // Utilidades
 import { slugify, removeTags } from "../utils/utils";
-import Button from "../components/elements/Button.astro";
-import CommentsForm from "../components/forms/CommentsForm.astro";
 
 const { postSlug } = Astro.params;
 if (postSlug === undefined) {
@@ -28,6 +28,41 @@ if (entry === undefined) {
 }
 
 const { Content, headings } = await entry.render();
+
+// Añadiendo comentario a bd
+const errors: Record<string, string> = {};
+
+const xata = new XataClient({
+  apiKey: import.meta.env.XATA_API_KEY,
+  branch: import.meta.env.XATA_BRANCH,
+});
+
+if (Astro.request.method === "POST") {
+  try {
+    const formData = await Astro.request.formData();
+    const comment = formData.get("comment") as string;
+
+    if (typeof comment !== "string" || comment.length < 10) {
+      errors.comment = "Tu comentario debe ser de al menos 10 caracteres";
+    }
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (!hasErrors) {
+      const record = await xata.db.comments.create({
+        post: postSlug,
+        comment,
+        user: Astro.cookies.get("userId")?.value,
+      });
+      console.log(record);
+    }
+  } catch (error) {
+    if (error instanceof Error) console.error(error.message);
+  }
+}
+
+const comments = await xata.db.comments
+  .select(["id", "comment", "user.name", "date"])
+  .filter("post", postSlug)
+  .getMany();
 ---
 
 <MainLayout
@@ -73,5 +108,5 @@ const { Content, headings } = await entry.render();
       </div>
     </div>
   </section>
-  <CommentsForm />
+  <CommentsForm {errors} {comments} />
 </MainLayout>

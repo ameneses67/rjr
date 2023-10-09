@@ -1,10 +1,11 @@
 ---
-// Types
-import type { CollectionEntry } from "astro:content";
-
 // Librerías
 import { Image } from "astro:assets";
-import { format } from "date-fns";
+import { formatDistance } from "date-fns";
+import { es } from "date-fns/locale";
+
+// Types
+import type { CollectionEntry } from "astro:content";
 
 // Componentes
 import Heading from "../elements/Heading.astro";
@@ -29,8 +30,13 @@ const { post } = Astro.props;
     </Heading>
   </a>
   <p class="text-sm text-slate-400">
-    Por: {post.data.author} &bull; Actualizado: <time
-      >{format(new Date(post.data.updateDate), "d/MMM/yyyy")}</time
+    Por {post.data.author} &bull; Actualizado <time
+      >{
+        formatDistance(post.data.updateDate, new Date(), {
+          locale: es,
+          addSuffix: true,
+        })
+      }</time
     >
   </p>
   <div>
@@ -47,7 +53,7 @@ const { post } = Astro.props;
       </a>
       <Link
         href={`/${slugify(post.data.category)}/`}
-        class="absolute bottom-0 left-0 rounded-bl-lg rounded-br-none rounded-tl-none rounded-tr-lg bg-skin-fill-very-dark py-1 text-sm capitalize"
+        class="absolute bottom-0 left-0 rounded-bl-lg rounded-br-none rounded-tl-none rounded-tr-lg bg-skin-fill-very-dark py-1 text-xs capitalize"
       >
         {post.data.category}
       </Link>

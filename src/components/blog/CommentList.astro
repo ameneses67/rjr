@@ -1,0 +1,42 @@
+---
+// Librerías
+import { formatDistance } from "date-fns";
+import { es } from "date-fns/locale";
+
+// Types
+import type { RecordArray, SelectedPick } from "@xata.io/client";
+import type { CommentsRecord } from "../../xata";
+
+interface Props {
+  comments: RecordArray<
+    Readonly<
+      SelectedPick<CommentsRecord, ["id" | "comment" | "date" | "user.name"]>
+    >
+  >;
+}
+const { comments } = Astro.props;
+---
+
+{
+  comments.length > 0 && (
+    <section class="bg-skin-fill-shade px-4 dark:bg-skin-fill-shade-dark sm:px-6">
+      <aside class="mx-auto max-w-3xl space-y-6 py-12 sm:py-16 lg:max-w-4xl">
+        {comments.map((comment) => (
+          <div class="space-y-4 rounded-lg border border-skin-base bg-skin-fill p-4 dark:border-skin-base-dark dark:bg-skin-fill-dark sm:p-8">
+            <div class="flex justify-between">
+              <p class="text-lg font-semibold text-skin-accent">
+                {comment.user?.name}
+              </p>
+              <p class="font-thin">
+                {formatDistance(comment.date, new Date(), {
+                  locale: es,
+                })}
+              </p>
+            </div>
+            <p>{comment.comment}</p>
+          </div>
+        ))}
+      </aside>
+    </section>
+  )
+}

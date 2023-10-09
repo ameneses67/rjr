@@ -4,6 +4,11 @@ import { twMerge } from "tailwind-merge";
 
 // Data
 import { navMenu } from "../../data/navMenu";
+import Button from "../elements/Button.astro";
+import Link from "../elements/Link.astro";
+
+// Login - Logout
+const userId = Astro.cookies.get("userId");
 
 interface Props {
   classes?: string;
@@ -15,17 +20,28 @@ const { classes } = Astro.props;
 <nav
   id="navbar"
   class={twMerge(
-    "md:font-semibold md:text-base md:text-skin-base dark:md:text-skin-base-dark z-[5]",
+    "md:font-semibold md:text-base md:text-skin-base dark:md:text-skin-base-dark z-[5] md:items-center md:gap-12",
     classes,
   )}
 >
-  <ul class="flex flex-col gap-12 md:flex-row">
+  <ul class="flex flex-col items-center gap-12 md:flex-row">
     {
       navMenu.map((item) => (
         <li class="hover:text-skin-base-hvr hover:dark:text-skin-base-dark-hvr">
           <a href={item.linkURL}>{item.linkName}</a>
         </li>
       ))
+    }
+    {
+      userId?.value ? (
+        <Link href="/cerrar-sesion" style="navbar" size="sm">
+          Cerrar
+        </Link>
+      ) : (
+        <Link href="/iniciar-sesion" style="navbar" size="sm">
+          Entrar
+        </Link>
+      )
     }
   </ul>
 </nav>
