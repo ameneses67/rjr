@@ -6,7 +6,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 import BoletinHero from "../components/BoletinHero.astro";
 import Features from "../components/features/Features.astro";
 import Heading from "../components/elements/Heading.astro";
-import FormBoletin from "../components/forms/FormBoletin.astro";
+import NewsletterForm from "../components/forms/NewsletterForm.astro";
+import Section from "../components/elements/Section.astro";
 
 const title = "Boletín Informativo";
 const description =
@@ -15,8 +16,8 @@ const description =
 
 <MainLayout {title} {description}>
   <BoletinHero />
-  <section class="space-y-16 px-4 sm:px-6">
-    <Heading tagType="h2" hClass="h1" classes="max-w-4xl">
+  <Section classes="space-y-16">
+    <Heading tagType="h2" hClass="h1" classes="max-w-3xl">
       Unete a cientos de personas que reciben tips financieros semanalmente en
       su correo
     </Heading>
@@ -27,6 +28,7 @@ const description =
         ¡Toma el control de tu dinero! No dejes que el dinero te controle a tí.
       </p>
     </div>
-    <FormBoletin text="Pruébalo" classes="max-w-md w-full mx-auto" />
-  </section>
+    <NewsletterForm text="Pruébalo" classes="max-w-md w-full mx-auto" />
+
+  </Section>
 </MainLayout>

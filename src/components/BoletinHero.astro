@@ -1,15 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import heroImage from "assets/hero.png";
-import Link from "../components/elements/Link.astro";
 import { Icon } from "astro-icon";
 import SectionHead from "./SectionHead.astro";
-import FormBoletin from "./forms/FormBoletin.astro";
+import NewsletterForm from "./forms/NewsletterForm.astro";
+import Section from "./elements/Section.astro";
 ---
 
-<section
-  class="container mx-auto grid place-items-center gap-8 px-4 sm:px-6 lg:grid-cols-2"
->
+<Section classes="grid place-items-center gap-8 lg:grid-cols-2">
   <div class="hidden w-full max-w-2xl py-6 md:order-1 md:block">
     <Icon name="new-message" />
   </div>
@@ -23,6 +19,7 @@ import FormBoletin from "./forms/FormBoletin.astro";
         inversión que no comparto en otro lado.
       </Fragment>
     </SectionHead>
-    <FormBoletin text="Pruébalo" />
+    <NewsletterForm text="Pruébalo" />
   </div>
-</section>
+
+</Section>

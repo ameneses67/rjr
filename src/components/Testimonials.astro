@@ -5,6 +5,7 @@ import { Image } from "astro:assets";
 // Componentes
 import Heading from "./elements/Heading.astro";
 import TestimonioCard from "./hero/TestimonioCard.astro";
+import Section from "./elements/Section.astro";
 
 // Data
 import { testimonios } from "../data/testimonials";
@@ -16,7 +17,7 @@ const testimoniosInicio = testimonios.filter(
 );
 ---
 
-<section class="max-w-4xl px-4 sm:px-6">
+<Section classes="max-w-3xl">
   <TestimonioCard classes="mx-auto mb-16 sm:mb-24 md:hidden max-w-md" />
   <Heading tagType="h2" hClass="h2" classes="mb-28 sm:mb-40">
     Lo que otros opinan
@@ -29,7 +30,7 @@ const testimoniosInicio = testimonios.filter(
           alt={testimonio.foto.alt}
           format="avif"
           quality="mid"
-          class="border-skin-base dark:border-skin-base-dark absolute h-24 w-24 -translate-y-1/2 rounded-full border object-cover sm:h-48 sm:w-48"
+          class="border-skin-base dark:border-skin-base-dark absolute h-24 w-24 -translate-y-1/2 rounded-full border object-cover sm:h-36 sm:w-36"
         />
         <p class="mt-20 max-w-xl font-sans text-2xl sm:mt-32 sm:text-3xl">
           {testimonio.descripcion}
@@ -41,4 +42,5 @@ const testimoniosInicio = testimonios.filter(
       </div>
     ))
   }
-</section>
+
+</Section>

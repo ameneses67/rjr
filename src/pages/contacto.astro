@@ -9,6 +9,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 import ContactForm from "../components/forms/ContactForm.astro";
 import SectionHead from "../components/SectionHead.astro";
 import Heading from "../components/elements/Heading.astro";
+import Section from "../components/elements/Section.astro";
 
 const title = "Contacto";
 const description =
@@ -23,7 +24,7 @@ const description =
       ¡Esperamos escuchar pronto de ti!
     </Fragment>
   </SectionHead>
-  <section class="container mx-auto px-4 sm:px-6">
+  <Section>
     <div class="mx-auto grid max-w-4xl gap-10 md:grid-cols-2">
       <div class="space-y-6">
         <Heading tagType="h2" hClass="h3" classes="text-left">
@@ -53,5 +54,5 @@ const description =
       </div>
       <ContactForm />
     </div>
-  </section>
+  </Section>
 </MainLayout>

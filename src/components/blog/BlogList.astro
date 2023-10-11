@@ -4,6 +4,7 @@ import type { CollectionEntry } from "astro:content";
 
 // Componentes
 import BlogCard from "./BlogCard.astro";
+import Section from "../elements/Section.astro";
 
 interface Props {
   posts: CollectionEntry<"blog">[];
@@ -12,6 +13,6 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<section class="container mx-auto space-y-12 px-4 sm:space-y-16 sm:px-6">
+<Section classes="space-y-12 sm:space-y-16">
   {posts.map((post) => <BlogCard post={post} />)}
-</section>
+</Section>
