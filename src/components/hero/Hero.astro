@@ -10,6 +10,7 @@ import TestimonioCard from "./TestimonioCard.astro";
 
 // Imágenes
 import Bodyshot from "../../assets/hero/bodyshot.png";
+import NewsletterFormMailerLite from "../forms/NewsletterFormMailerLite.astro";
 ---
 
 <Section>
@@ -22,6 +23,7 @@ import Bodyshot from "../../assets/hero/bodyshot.png";
       </Heading>
       <TestimonioCard classes="hidden md:block" />
       <NewsletterForm text="No pierdo nada" classes="hidden lg:block" />
+      <NewsletterFormMailerLite text="MailerLite" />
     </div>
     <div class="flex items-end">
       <Image
@@ -36,5 +38,4 @@ import Bodyshot from "../../assets/hero/bodyshot.png";
     text="No pierdo nada con probar"
     classes="lg:hidden border-b border-skin-base-shade dark:border-skin-base-shade-dark py-4 px-4 sm:px-6 bg-skin-fill dark:bg-skin-fill-dark"
   />
-
 </Section>

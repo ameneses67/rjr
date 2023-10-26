@@ -1,0 +1,77 @@
+---
+// Librerías
+import { twMerge } from "tailwind-merge";
+import MailerLite from "@mailerlite/mailerlite-nodejs";
+
+// Utilidades
+import { isValidEmail } from "../../utils/utils";
+
+interface Props {
+  text: string;
+  classes?: string;
+}
+
+const errors: Record<string, string> = {};
+
+if (Astro.request.method === "POST") {
+  try {
+    const formData = await Astro.request.formData();
+    const email = formData.get("email");
+
+    if (typeof email !== "string" || !isValidEmail(email)) {
+      errors.email = "Correo electrónico no válido.";
+    }
+
+    // Do something with the data
+    const hasErrors = Object.values(errors).some((msg) => msg);
+    if (!hasErrors) {
+      const mailerlite = new MailerLite({
+        api_key: import.meta.env.MAILERLITE_API_KEY,
+      });
+
+      const params = {
+        email,
+        groups: ["92541968067855585"],
+        status: "active",
+      };
+
+      mailerlite.subscribers
+        .createOrUpdate(params)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((error) => {
+          if (error.response) console.log(error.response.data);
+        });
+
+      return Astro.redirect("/acerca-de", 302);
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+
+const { classes, text } = Astro.props;
+---
+
+<div class={twMerge(classes)}>
+  <form
+    method="POST"
+    class="mx-auto flex max-w-2xl flex-col gap-2 md:flex-row md:gap-0"
+  >
+    <input
+      type="email"
+      name="email"
+      id="email"
+      placeholder="Correo electrónico"
+      class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
+    />
+    <button
+      type="submit"
+      class="min-w-fit rounded-lg bg-skin-accent px-12 py-4 font-bold text-white transition hover:bg-skin-accent-hvr"
+      >{text}</button
+    >
+  </form>
+</div>
