@@ -30,6 +30,7 @@ const { comments } = Astro.props;
               <p class="font-thin">
                 {formatDistance(comment.date, new Date(), {
                   locale: es,
+                  addSuffix: true,
                 })}
               </p>
             </div>

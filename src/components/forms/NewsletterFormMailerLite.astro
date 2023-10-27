@@ -11,12 +11,18 @@ interface Props {
   classes?: string;
 }
 
+interface Params {
+  email: string;
+  groups: string[];
+  status: "active" | "unsubscribed" | "unconfirmed" | "bounced" | "junk";
+}
+
 const errors: Record<string, string> = {};
 
 if (Astro.request.method === "POST") {
   try {
     const formData = await Astro.request.formData();
-    const email = formData.get("email");
+    const email = formData.get("email") as string;
 
     if (typeof email !== "string" || !isValidEmail(email)) {
       errors.email = "Correo electrónico no válido.";
@@ -29,7 +35,7 @@ if (Astro.request.method === "POST") {
         api_key: import.meta.env.MAILERLITE_API_KEY,
       });
 
-      const params = {
+      const params: Params = {
         email,
         groups: ["92541968067855585"],
         status: "active",
@@ -44,7 +50,7 @@ if (Astro.request.method === "POST") {
           if (error.response) console.log(error.response.data);
         });
 
-      return Astro.redirect("/acerca-de", 302);
+      return Astro.redirect("/acerca-de");
     }
   } catch (error) {
     if (error instanceof Error) {
@@ -59,15 +65,23 @@ const { classes, text } = Astro.props;
 <div class={twMerge(classes)}>
   <form
     method="POST"
-    class="mx-auto flex max-w-2xl flex-col gap-2 md:flex-row md:gap-0"
+    class="mx-auto flex max-w-2xl flex-col items-start gap-2 md:flex-row md:gap-0"
   >
-    <input
-      type="email"
-      name="email"
-      id="email"
-      placeholder="Correo electrónico"
-      class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
-    />
+    <div class="space-y-2">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Correo electrónico"
+        class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
+        required
+      />
+      {
+        errors && (
+          <p class="pl-1 text-sm font-semibold text-red-600">{errors.email}</p>
+        )
+      }
+    </div>
     <button
       type="submit"
       class="min-w-fit rounded-lg bg-skin-accent px-12 py-4 font-bold text-white transition hover:bg-skin-accent-hvr"
