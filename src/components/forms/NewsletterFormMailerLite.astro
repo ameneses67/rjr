@@ -63,11 +63,10 @@ const { classes, text } = Astro.props;
 ---
 
 <div class={twMerge(classes)}>
-  <form
-    method="POST"
-    class="mx-auto flex max-w-2xl flex-col items-start gap-2 md:flex-row md:gap-0"
-  >
-    <div class="space-y-2">
+  <form method="POST">
+    <div
+      class="mx-auto flex max-w-2xl flex-col items-start gap-2 md:flex-row md:gap-0"
+    >
       <input
         type="email"
         name="email"
@@ -76,16 +75,16 @@ const { classes, text } = Astro.props;
         class="-mr-3 w-full rounded-lg border border-skin-base-shade px-3 py-4 placeholder:text-skin-base-dark dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark"
         required
       />
-      {
-        errors && (
-          <p class="pl-1 text-sm font-semibold text-red-600">{errors.email}</p>
-        )
-      }
+      <button
+        type="submit"
+        class="min-w-fit rounded-lg bg-skin-accent px-12 py-4 font-bold text-white transition hover:bg-skin-accent-hvr"
+        >{text}</button
+      >
     </div>
-    <button
-      type="submit"
-      class="min-w-fit rounded-lg bg-skin-accent px-12 py-4 font-bold text-white transition hover:bg-skin-accent-hvr"
-      >{text}</button
-    >
+    {
+      errors && (
+        <p class="pl-1 text-sm font-semibold text-red-600">{errors.email}</p>
+      )
+    }
   </form>
 </div>

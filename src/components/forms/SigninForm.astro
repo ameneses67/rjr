@@ -4,11 +4,13 @@ import { twMerge } from "tailwind-merge";
 
 interface Props {
   text: string;
+  email: string;
+  password: string;
   classes?: string;
   errors: Record<string, string>;
 }
 
-const { classes, text, errors } = Astro.props;
+const { classes, text, errors, email, password } = Astro.props;
 ---
 
 <section class={twMerge(classes)}>
@@ -26,10 +28,13 @@ const { classes, text, errors } = Astro.props;
           id="email"
           placeholder="Tu correo electrónico"
           class="-mr-3 w-full rounded-lg border-skin-base px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+          value={email}
         /><div class="h-4">
           {
             errors.email && (
-              <p class="text-sm text-skin-accent">{errors.email}</p>
+              <p class="pl-1 text-sm font-semibold text-red-600">
+                {errors.email}
+              </p>
             )
           }
         </div>
@@ -44,11 +49,14 @@ const { classes, text, errors } = Astro.props;
           id="password"
           placeholder="Elige tu contraseña"
           class="-mr-3 w-full rounded-lg border-skin-base px-3 py-4 placeholder:font-light placeholder:text-skin-base-dark dark:border-skin-base-dark dark:bg-skin-fill-shade-dark"
+          value={password}
         />
         <div class="h-8">
           {
             errors.password && (
-              <p class="text-sm text-skin-accent">{errors.password}</p>
+              <p class="pl-1 text-sm font-semibold text-red-600">
+                {errors.password}
+              </p>
             )
           }
         </div>

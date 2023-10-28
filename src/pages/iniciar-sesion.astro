@@ -19,17 +19,15 @@ const errors: Record<string, string> = {};
 
 if (Astro.request.method === "POST") {
   const formData = await Astro.request.formData();
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  var email = formData.get("email") as string;
+  var password = formData.get("password") as string;
 
   const user = await xata.db.users.filter("email", email).getFirst();
-  console.log(user);
 
   if (!user) {
     errors.email = "Correo electrónico incorrecto";
   } else {
     const authenticated = bcrypt.compareSync(password, user.password);
-    console.log(authenticated);
 
     if (!authenticated) {
       errors.password = "Contraseña incorrecta";
@@ -63,6 +61,11 @@ const description =
       <Fragment slot="title">Iniciar sesión</Fragment>
       <Fragment slot="desc">Llena el formulario para iniciar sesión</Fragment>
     </SectionHead>
-    <SigninForm text="Iniciar Sesión" {errors} />
+    <SigninForm
+      text="Iniciar Sesión"
+      email={email!}
+      password={password!}
+      {errors}
+    />
   </section>
 </MainLayout>
