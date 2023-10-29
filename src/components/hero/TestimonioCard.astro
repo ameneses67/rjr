@@ -21,7 +21,7 @@ const { classes } = Astro.props;
 
 <div
   class={twMerge(
-    "max-w-ld rounded-lg border border-slate-200 bg-skin-fill p-6 dark:border-slate-800 dark:bg-skin-fill-shade-dark",
+    "max-w-ld rounded-lg border border-skin-base-shade bg-skin-fill p-6 dark:border-skin-base-shade-dark dark:bg-skin-fill-shade-dark",
     classes,
   )}
 >
@@ -38,7 +38,7 @@ const { classes } = Astro.props;
         />
         <div>
           <p class="mb-4 max-w-sm">"{testimonio.descripcion}"</p>
-          <cite class="text-skin-hdng-base dark:text-skin-hdng-base-dark text-sm">
+          <cite class="text-sm text-skin-hdng-base dark:text-skin-hdng-base-dark">
             {testimonio.nombre}, {testimonio.ocupacion}
           </cite>
         </div>

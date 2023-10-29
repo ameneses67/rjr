@@ -28,3 +28,9 @@ export const removeTags = (str: string) => {
   str = str.toString();
   return str.replace(/(<([^>]+)>)/gi, "");
 };
+
+export const isValidEmail = (correo: string): boolean => {
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  return emailRegex.test(correo);
+};

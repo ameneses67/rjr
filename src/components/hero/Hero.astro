@@ -9,6 +9,7 @@ import Heading from "../elements/Heading.astro";
 // Imágenes
 import Bodyshot from "../../assets/hero/bodyshot.png";
 import TestimonioCard from "./TestimonioCard.astro";
+import NewsletterOptinForm from "../forms/NewsletterOptinForm.astro";
 ---
 
 <section class="w-full sm:gap-6">
@@ -17,10 +18,10 @@ import TestimonioCard from "./TestimonioCard.astro";
   >
     <div class="space-y-4 pb-4 sm:space-y-8 md:py-6">
       <Heading tagType="h1" hClass="h1" classes="text-left max-w-xl">
-        Recibe tips financieros exclusivos para los suscriptores
+        Recibe tips financieros exclusivos para suscriptores
       </Heading>
       <TestimonioCard classes="hidden md:block" />
-      <FormBoletin text="No pierdo nada" classes="hidden lg:block" />
+      <NewsletterOptinForm text="No pierdo nada" classes="hidden lg:block" />
     </div>
     <div class="flex items-end">
       <Image
@@ -31,7 +32,7 @@ import TestimonioCard from "./TestimonioCard.astro";
       />
     </div>
   </div>
-  <FormBoletin
+  <NewsletterOptinForm
     text="No pierdo nada con probar"
     classes="lg:hidden border-b border-skin-base-shade dark:border-skin-base-shade-dark py-4 px-4 sm:px-6 bg-skin-fill dark:bg-skin-fill-dark"
   />
